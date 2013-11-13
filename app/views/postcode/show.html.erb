@@ -26,12 +26,13 @@
         <%= map(:center => {
             :latlng => @postcode.latlng,
             :zoom => 16,
+            },
             :markers => [
               {
                  :latlng => @postcode.latlng,
               }
             ]
-        })%>
+        )%>
       </div>
     </div>
     <div class="row">
