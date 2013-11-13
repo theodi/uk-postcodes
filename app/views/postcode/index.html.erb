@@ -1,0 +1,65 @@
+<div class="row">
+  <h1>UK Postcodes</h1>
+  
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#postcode" data-toggle="tab">Postcode</a></li>
+        <li><a href="#nearest" data-toggle="tab">Nearest</a></li>
+        <li><a href="#reverse" data-toggle="tab">Reverse</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane active" id="postcode">
+          <%= form_tag("/postcode/search", method: "get", role: "form", class: "form-inline") do %>
+            <div class="form-group">
+              <label>Give me data for <%= text_field_tag(:q, nil, {:placeholder => "Postcode", :class => "form-control"}) %></label>
+            </div>
+            <div class="form-group">
+              <label>in <%= select_tag :format, options_for_select(["HTML", "JSON", "XML", "CSV", "RDF"]), :class => "form-control" %> format</label>
+            </div>
+            <div class="form-group">
+              <%= submit_tag("please", :class => "btn btn-primary") %>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane" id="nearest">
+          <%= form_tag("/postcode/nearest", method: "get", role: "form", class: "form-inline") do %>
+            <div class="form-group">
+              <label>Show me postcodes within <%= text_field_tag(:miles, nil, {:class => "form-control"}) %> miles</label>
+            </div>
+            <div class="form-group">
+              <label>of <%= text_field_tag(:postcode, nil, {:placeholder => "Postcode", :class => "form-control"}) %> </label> 
+            </div>
+            <div class="form-group">
+              in <%= select_tag :format, options_for_select(["HTML", "JSON", "XML", "CSV", "RDF"]), :class => "form-control" %> format
+            </div>
+            <div class="form-group">
+              <%= submit_tag("please", :class => "btn btn-primary") %>
+            </div>
+          <% end %>
+        </div>
+        <div class="tab-pane" id="reverse">
+          <%= form_tag("/postcode/reverse", method: "get", role: "form", class: "form-inline") do %>
+          <div class="form-group">
+            Give me data for the nearest postcode to
+            <%= label_tag('lat', 'Latitude', {:class => 'text-hide'})%>
+            <%= text_field_tag(:lat, nil, {:placeholder => "Latitude", :class => "form-control"}) %>,
+          </div>
+          <div class="form-group">
+            <%= label_tag('lng', 'Longitude', {:class => 'text-hide'})%>
+            <%= text_field_tag(:lng, nil, {:placeholder => "Longitude", :class => "form-control"}) %>
+          </div>
+          <div class="form-group">
+            in <%= select_tag :format, options_for_select(["HTML", "JSON", "XML", "CSV", "RDF"]), :class => "form-control" %> format
+          </div>
+          <div class="form-group">
+            <%= submit_tag("please", :class => "btn btn-primary") %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

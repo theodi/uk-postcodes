@@ -1,0 +1,81 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+ *= require_self
+ *= require leaflet
+ *= require leaflet.ie
+ *= require_tree .
+ */
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html,
+body {
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -60px;
+  /* Pad bottom by footer height */
+  padding: 0 0 60px;
+}
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.form-group label {
+	font-weight: normal;
+}
+
+input#q, input#postcode, input#lat, input#lng {
+	float: none;
+	width: 120px;
+}
+
+select#format {
+	width: 80px;
+}
+
+input#num, input#miles {
+	width: 50px;
+}
+
+.tab-content {
+	padding: 40px 0;
+}
+
+#main {
+	padding: 60px 0;
+}
+
+.tab-pane form {
+	text-align: center;
+	font-size: 20px;
+}
+
+#map {
+	width: 100%;
+	height: 350px;
+	margin-bottom: 20px;
+}
+
+dt {
+	text-align: left !important;
+	margin-bottom: 10px;
+}

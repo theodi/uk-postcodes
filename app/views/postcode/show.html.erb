@@ -1,0 +1,43 @@
+<div class="vcard">
+  <div class="adr">
+  <h1>Data for <span class="fn org postal-code"><%= @postcode.postcode %></span></h1>
+    <div class="result geo row">
+      <div class="col-md-7">
+      <dl class="dl-horizontal">
+        <dt>Latitude</dt>
+        <dd class="latitude"><%= @postcode.lat.round(6) %></dd>
+        <dt>Longitude</dt>
+        <dd class="longitude"><%= @postcode.lng.round(6) %></dd>
+        <dt>Easting</dt>
+        <dd><%= @postcode.easting.to_i %></dd>
+        <dt>Northing</dt>
+        <dd><%= @postcode.northing.to_i %></dd>
+        <dt>Geohash URI</dt>
+        <dd><%= link_to @postcode.geohash, @postcode.geohash %></dd>
+        <dt>Openly Local URL</dt>
+        <dd><%= link_to "http://openlylocal.com/areas/postcodes/#{@postcode.postcode.gsub(' ', '')}" %></dd>          
+        <% @postcode.admin_areas.each do |title, area| %>
+            <dt><%= title.to_s.titleize %></dt> 
+            <dd><%= link_to area[:name], area[:os_uri] %></dd>
+        <% end %>
+      </dl>
+      </div>
+      <div class="col-md-5">
+        <%= map(:center => {
+            :latlng => @postcode.latlng,
+            :zoom => 16,
+            :markers => [
+              {
+                 :latlng => @postcode.latlng,
+              }
+            ]
+        })%>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <p class="text-center">Get this data as: <%= alternate_link_buttons(:icon => '') %></p>
+      </div>
+    </div>
+  </div>
+</div>

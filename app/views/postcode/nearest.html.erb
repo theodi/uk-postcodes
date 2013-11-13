@@ -1,0 +1,7 @@
+<h1>Postcodes within <%= params[:miles] %> miles of <%= @postcode.postcode %></h1>
+
+<ul>
+  <% @postcodes.each do |postcode| %>
+    <li><%= link_to postcode.postcode, postcode_path(postcode.postcode.gsub(" ", "")) %></li>
+  <% end %>
+</ul>
