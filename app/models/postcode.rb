@@ -35,6 +35,11 @@ class Postcode
     self.eastingnorthing[1]
   end
   
+  def distance_from(latlng)
+    d = Geodesic::dist_haversine(self.lat, self.lng, latlng[0], latlng[1])
+    d.round(4)
+  end
+  
   def admin_areas
     areas = {}
     ADMIN_AREAS.each do |area|

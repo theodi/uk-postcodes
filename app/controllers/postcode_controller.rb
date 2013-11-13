@@ -38,6 +38,7 @@ class PostcodeController < ApplicationController
     @postcode = Postcode.where(:postcode => p.norm).first
     radius = params[:miles].to_f / 69.to_f
     @postcodes = Postcode.within_circle(latlng: [@postcode.latlng.to_a, radius]).includeLocs(true)
+    @postcodes.sort_by!{|p| p.distance_from(@postcode.latlng)}
     
     respond_to do |format|
       format.html

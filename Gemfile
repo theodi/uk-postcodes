@@ -18,6 +18,7 @@ gem 'georuby'
 gem 'linkeddata'
 gem 'jbuilder'
 gem 'pr_geohash'
+gem 'geodesic'
 
 gem "therubyracer"
 gem "less-rails"

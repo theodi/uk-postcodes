@@ -66,6 +66,7 @@ GEM
     erubis (2.7.0)
     execjs (2.0.2)
     fastercsv (1.5.5)
+    geodesic (1.0.1)
     georuby (2.2.0)
     haml (4.0.4)
       tilt
@@ -228,6 +229,7 @@ DEPENDENCIES
   alternate_rails!
   coffee-rails (~> 3.2.1)
   dbf
+  geodesic
   georuby
   jbuilder
   jquery-rails
