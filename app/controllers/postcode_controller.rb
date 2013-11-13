@@ -1,7 +1,7 @@
 class PostcodeController < ApplicationController
   include PostcodeHelper
   
-  before_filter(:only => [:show]) { alternate_formats [:json, :xml, :rdf, :csv] }
+  before_filter(:only => [:show, :nearest]) { alternate_formats [:json, :xml, :rdf, :csv] }
 
   def index
     
@@ -27,7 +27,7 @@ class PostcodeController < ApplicationController
         format.html
         format.json
         format.xml
-        format.rdf { dump_graph(@postcode) }
+        format.rdf { show_rdf(@postcode) }
         format.csv { render :text => @postcode.to_csv }
       end
     end

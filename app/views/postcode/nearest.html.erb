@@ -1,7 +1,17 @@
-<h1>Postcodes within <%= params[:miles] %> miles of <%= @postcode.postcode %></h1>
+<div class="row">
+  <div class="col-md-12">
+    <h1>Postcodes within <%= params[:miles] %> miles of <%= @postcode.postcode %></h1>
 
-<ul>
-  <% @postcodes.each do |postcode| %>
-    <li><%= link_to postcode.postcode, postcode_path(postcode.postcode.gsub(" ", "")) %></li>
-  <% end %>
-</ul>
+    <ul>
+      <% @postcodes.each do |postcode| %>
+        <li><%= link_to postcode.postcode, postcode_path(postcode.postcode.gsub(" ", "")) %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <p class="text-center">Get this data as: <%= alternate_link_buttons(:icon => '') %></p>
+  </div>
+</div>
