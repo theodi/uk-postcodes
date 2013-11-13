@@ -12,7 +12,7 @@ module PostcodeHelper
     }
   end
   
-  def generate_rdf(postcode)
+  def show_rdf(postcode)
     graph = RDF::Graph.new
     
     p = RDF::URI.new("http://uk-postcodes.com/postcode/#{postcode.postcode.gsub(" ", "")}")
@@ -32,12 +32,24 @@ module PostcodeHelper
       graph << [os_uri, prefixes[:rdfs].label, area[:name]]
     end
     
-    return graph
-        
+    render :text => graph.dump(:rdfxml, :prefixes => prefixes)  
   end
   
-  def dump_graph(postcode)
-    graph = generate_rdf(postcode)
+  def nearest_rdf(postcodes)
+    graph = RDF::Graph.new
+    
+    postcodes.each do |postcode|
+      p = RDF::URI.new("http://uk-postcodes.com/postcode/#{postcode.postcode.gsub(" ", "")}")
+      
+      graph << [p, prefixes[:rdfs].label, postcode.postcode]
+      graph << [p, RDF.type, RDF::URI.new("http://data.ordnancesurvey.co.uk/ontology/postcode/PostcodeUnit")]
+      graph << [p, prefixes[:owl].sameAs, RDF::URI.new("http://data.ordnancesurvey.co.uk/id/postcodeunit/#{postcode.postcode.gsub(" ", "")}")]
+      graph << [p, prefixes[:geo].lat, RDF::Literal.new(postcode.lat, :datatype => RDF::XSD.decimal) ]
+      graph << [p, prefixes[:geo].long, RDF::Literal.new(postcode.lng, :datatype => RDF::XSD.decimal) ]
+      graph << [p, prefixes[:spatialrelations].easting, postcode.easting.to_int ]
+      graph << [p, prefixes[:spatialrelations].northing, postcode.northing.to_int ]
+    end
+    
     render :text => graph.dump(:rdfxml, :prefixes => prefixes)
   end
   

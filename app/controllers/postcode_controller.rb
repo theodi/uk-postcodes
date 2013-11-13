@@ -47,7 +47,7 @@ class PostcodeController < ApplicationController
       format.html
       format.json
       format.xml
-      format.rdf { dump_graph(@postcodes) }
+      format.rdf { nearest_rdf(@postcodes) }
       format.csv do
         csv = []
         @postcodes.each do |postcode|
