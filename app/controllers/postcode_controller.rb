@@ -36,8 +36,11 @@ class PostcodeController < ApplicationController
   def nearest
     p = UKPostcode.new(params[:postcode])
     @postcode = Postcode.where(:postcode => p.norm).first
-    radius = params[:miles].to_f / 69.to_f
-    @postcodes = Postcode.within_circle(latlng: [@postcode.latlng.to_a, radius]).includeLocs(true)
+    # This is a rough conversion to radians
+    radius = params[:miles].to_f / 69
+    @postcodes = Postcode.within_circle(latlng: [@postcode.latlng.to_a, radius]).to_a
+    # Remove any postcodes with a distance of more than the number of miles (there should only be a few)
+    @postcodes.select!{|p| p.distance_from(@postcode.latlng) < params[:miles].to_f}
     @postcodes.sort_by!{|p| p.distance_from(@postcode.latlng)}
     
     respond_to do |format|
@@ -50,7 +53,7 @@ class PostcodeController < ApplicationController
         @postcodes.each do |postcode|
           csv << postcode.to_csv
         end
-        render :text => csv.join
+        render :text => csv.join()
       end
     end
   end
