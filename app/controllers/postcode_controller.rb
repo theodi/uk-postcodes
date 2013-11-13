@@ -11,7 +11,7 @@ class PostcodeController < ApplicationController
     if params[:id].match(/\s/) || params[:id].match(/[a-z]/)
       postcode = params[:id].gsub(' ', '').upcase
       params[:format] ||= "html"
-      redirect_to postcode_url(postcode, format: params[:format].downcase), status: :moved_permanently
+      redirect_to postcode_url(postcode, format: params[:format]), status: "301"
       return
     end
     
@@ -69,13 +69,13 @@ class PostcodeController < ApplicationController
     
     postcode = Postcode.geo_near([params[:lat].to_f, params[:lng].to_f]).first
     p = postcode.postcode.gsub(" ", "")
-    redirect_to postcode_url(p, format: params[:format].downcase)
+    redirect_to postcode_url(p, format: params[:format]), status: "303"
   end
   
   def search
     p = UKPostcode.new(params[:q])
     postcode = p.norm.gsub(" ", "")
-    redirect_to postcode_url(postcode, format: params[:format].downcase), status: :moved_permanently
+    redirect_to postcode_url(postcode, format: params[:format]), status: "303"
   end
 
 end
