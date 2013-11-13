@@ -11,7 +11,7 @@
  *= require_self
  *= require leaflet
  *= require leaflet.ie
- *= require_tree .
+ *= require bootstrap_and_overrides
  */
 
 /* Sticky footer styles

@@ -20,7 +20,7 @@
               <label>in <%= select_tag :format, options_for_select(["html", "json", "xml", "csv", "rdf"]), :class => "form-control" %> format</label>
             </div>
             <div class="form-group">
-              <%= submit_tag("please", :class => "btn btn-primary") %>
+              <%= button_tag("please", :class => "btn", :type => "submit") %>
             </div>
           <% end %>
         </div>
@@ -36,7 +36,7 @@
               in <%= select_tag :format, options_for_select(["html", "json", "xml", "csv", "rdf"]), :class => "form-control" %> format
             </div>
             <div class="form-group">
-              <%= submit_tag("please", :class => "btn btn-primary") %>
+              <%= button_tag("please", :class => "btn", :type => "submit") %>
             </div>
           <% end %>
         </div>
@@ -55,7 +55,7 @@
             in <%= select_tag :format, options_for_select(["html", "json", "xml", "csv", "rdf"]), :class => "form-control" %> format
           </div>
           <div class="form-group">
-            <%= submit_tag("please", :class => "btn btn-primary") %>
+            <%= submit_tag("please", :class => "btn") %>
           </div>
           <% end %>
         </div>
