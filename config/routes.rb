@@ -6,5 +6,7 @@ UkPostcodes::Application.routes.draw do
   get "postcode/reverse", as: "postcode_reverse", to: 'postcode#reverse'
 
   resources :postcode, :only => [:index, :show]
+  
+  get "latlng/:latlng", to: 'postcode#reverse', as: "latlng", :constraints => { :latlng => /[^\/]+(?=\.html\z|\.json\z|\.csv\z|\.rdf\z)|[^\/]+/ }
     
 end
