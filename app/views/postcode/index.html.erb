@@ -17,7 +17,7 @@
               <label>Give me data for <%= text_field_tag(:q, nil, {:placeholder => "Postcode", :class => "form-control"}) %></label>
             </div>
             <div class="form-group">
-              <label>in <%= select_tag :format, options_for_select(["HTML", "JSON", "XML", "CSV", "RDF"]), :class => "form-control" %> format</label>
+              <label>in <%= select_tag :format, options_for_select(["html", "json", "xml", "csv", "rdf"]), :class => "form-control" %> format</label>
             </div>
             <div class="form-group">
               <%= submit_tag("please", :class => "btn btn-primary") %>
@@ -33,7 +33,7 @@
               <label>of <%= text_field_tag(:postcode, nil, {:placeholder => "Postcode", :class => "form-control"}) %> </label> 
             </div>
             <div class="form-group">
-              in <%= select_tag :format, options_for_select(["HTML", "JSON", "XML", "CSV", "RDF"]), :class => "form-control" %> format
+              in <%= select_tag :format, options_for_select(["html", "json", "xml", "csv", "rdf"]), :class => "form-control" %> format
             </div>
             <div class="form-group">
               <%= submit_tag("please", :class => "btn btn-primary") %>
@@ -52,7 +52,7 @@
             <%= text_field_tag(:lng, nil, {:placeholder => "Longitude", :class => "form-control"}) %>
           </div>
           <div class="form-group">
-            in <%= select_tag :format, options_for_select(["HTML", "JSON", "XML", "CSV", "RDF"]), :class => "form-control" %> format
+            in <%= select_tag :format, options_for_select(["html", "json", "xml", "csv", "rdf"]), :class => "form-control" %> format
           </div>
           <div class="form-group">
             <%= submit_tag("please", :class => "btn btn-primary") %>
