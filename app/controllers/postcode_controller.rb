@@ -64,6 +64,9 @@ class PostcodeController < ApplicationController
       params[:lat] = latlng[0]
       params[:lng] = latlng[1]
     end
+    
+    params[:format] ||= "html"
+    
     postcode = Postcode.geo_near([params[:lat].to_f, params[:lng].to_f]).first
     p = postcode.postcode.gsub(" ", "")
     redirect_to postcode_url(p, format: params[:format].downcase)
