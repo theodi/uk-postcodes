@@ -9,9 +9,9 @@
         <dt>Longitude</dt>
         <dd class="longitude"><%= @postcode.lng.round(6) %></dd>
         <dt>Easting</dt>
-        <dd><%= @postcode.easting.to_i %></dd>
+        <dd><%= @postcode.easting.to_i %> <%= "<em class='ing'>(Irish National Grid)</em>".html_safe if @postcode.country == "N92000002" %></dd>
         <dt>Northing</dt>
-        <dd><%= @postcode.northing.to_i %></dd>
+        <dd><%= @postcode.northing.to_i %> <%= "<em class='ing'>(Irish National Grid)</em>".html_safe if @postcode.country == "N92000002" %></dd>
         <dt>Geohash URI</dt>
         <dd><%= link_to @postcode.geohash, @postcode.geohash %></dd>
         <dt>Openly Local URL</dt>
