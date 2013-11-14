@@ -19,17 +19,23 @@ module PostcodeHelper
     
     graph << [p, prefixes[:rdfs].label, postcode.postcode]
     graph << [p, RDF.type, RDF::URI.new("http://data.ordnancesurvey.co.uk/ontology/postcode/PostcodeUnit")]
-    graph << [p, prefixes[:owl].sameAs, RDF::URI.new("http://data.ordnancesurvey.co.uk/id/postcodeunit/#{postcode.postcode.gsub(" ", "")}")]
+    
+    unless postcode.country == "N92000002"
+      graph << [p, prefixes[:owl].sameAs, RDF::URI.new("http://data.ordnancesurvey.co.uk/id/postcodeunit/#{postcode.postcode.gsub(" ", "")}")]
+    end
+    
     graph << [p, prefixes[:geo].lat, RDF::Literal.new(postcode.lat, :datatype => RDF::XSD.decimal) ]
     graph << [p, prefixes[:geo].long, RDF::Literal.new(postcode.lng, :datatype => RDF::XSD.decimal) ]
     graph << [p, prefixes[:spatialrelations].easting, postcode.easting.to_int ]
     graph << [p, prefixes[:spatialrelations].northing, postcode.northing.to_int ]
     
-    @postcode.admin_areas.each do |title, area|
-      graph << [p, prefixes[:spatialrelations]['t_spatiallyInside'], RDF::URI.new(area[:ons_uri]) ]
-      os_uri = RDF::URI.new(area[:os_uri])
-      graph << [p, prefixes[:spatialrelations][area[:type]], os_uri ]
-      graph << [os_uri, prefixes[:rdfs].label, area[:name]]
+    unless postcode.country == "N92000002"
+      @postcode.admin_areas.each do |title, area|
+        graph << [p, prefixes[:spatialrelations]['t_spatiallyInside'], RDF::URI.new(area[:ons_uri]) ]
+        os_uri = RDF::URI.new(area[:os_uri])
+        graph << [p, prefixes[:spatialrelations][area[:type]], os_uri ]
+        graph << [os_uri, prefixes[:rdfs].label, area[:name]]
+      end
     end
     
     render :text => graph.dump(:rdfxml, :prefixes => prefixes)  

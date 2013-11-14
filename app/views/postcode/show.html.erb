@@ -18,7 +18,11 @@
         <dd><%= link_to "http://openlylocal.com/areas/postcodes/#{@postcode.postcode.gsub(' ', '')}" %></dd>          
         <% @postcode.admin_areas.each do |title, area| %>
             <dt><%= title.to_s.titleize %></dt> 
-            <dd><%= link_to area[:name], area[:os_uri] %></dd>
+            <% if @postcode.country == "N92000002" %>
+              <dd><%= area[:name] %></dd>
+            <% else %>
+              <dd><%= link_to area[:name], area[:os_uri] %></dd>
+            <% end %>
         <% end %>
       </dl>
       </div>
