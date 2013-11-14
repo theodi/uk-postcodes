@@ -10,7 +10,7 @@ gem 'rails', '3.2.14'
 
 gem 'sqlite3'
 gem 'mongoid', '~> 3.1.0'
-gem 'mongoid_geospatial'
+gem 'mongoid_geospatial', :github => 'nofxx/mongoid_geospatial'
 gem 'osgb'
 gem 'uk_postcode'
 gem 'dbf'
@@ -25,6 +25,7 @@ gem "less-rails"
 gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails', :branch => 'bootstrap3'
 gem 'leaflet-rails'
 gem 'alternate_rails', :github => 'theodi/alternate-rails'
+gem 'rack-cors'
 
 gem 'pry-remote'
 
