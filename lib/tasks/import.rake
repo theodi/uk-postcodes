@@ -19,5 +19,7 @@ namespace :import do
   desc "Import Codes"
   task :code => :environment do
     Import.codes
+    Import.ni_codes
   end
+
 end

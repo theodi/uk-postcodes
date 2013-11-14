@@ -52,7 +52,7 @@ class Import
         name = shape.data['NAME']
         code = shape.data['UNIT_ID']
         geom = shape.geometry.to_coordinates
-        
+                
         Boundary.create(:name  => name,
                         :code  => code,
                         :type  => type,
@@ -87,6 +87,32 @@ class Import
                     :os   => k.split('/').last,
                     :gss    => v['http://data.ordnancesurvey.co.uk/ontology/admingeo/gssCode'],
                     :type   => v['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'].split('/').last
+                    )
+      end
+    end
+  end
+  
+  def self.ni_codes
+    codes = {
+      :council      => "ni_councils.csv",
+      :ward         => "ni_wards.csv",
+      :constituency => "ni_constituencies.csv"
+    }
+    
+    codes.each do |type, file|
+      file = Rails.root.join('lib', file).to_s
+      
+      if type == :council
+        type = "District"
+      else
+        type = "DistrictWard"
+      end
+      
+      CSV.foreach(file) do |row|
+        Code.create(:name => row[1],
+                    :os   => nil,
+                    :gss  => row[0],
+                    :type => type
                     )
       end
     end
