@@ -28,10 +28,22 @@ body {
   min-height: 100%;
   height: auto;
   /* Negative indent footer by its height */
-  margin: 0 auto -60px;
+  margin: 0 auto -100px;
   /* Pad bottom by footer height */
-  padding: 0 0 60px;
+  padding: 0 0 100px;
 }
+
+/* Set the fixed height of the footer here */
+#footer {
+  height: 100px;
+  background-color: #563624;
+	font-size: 0.9em;
+}
+
+#footer p {
+	margin: 7px 0;
+}
+
 
 .form-group label {
 	font-weight: normal;

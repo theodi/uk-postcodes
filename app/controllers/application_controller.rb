@@ -7,5 +7,9 @@ class ApplicationController < ActionController::Base
       format.any  { head :not_found }
     end
   end
+  
+  def static
+    render "static/#{params[:page]}" rescue render_404
+  end
 
 end

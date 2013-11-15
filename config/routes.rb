@@ -9,4 +9,6 @@ UkPostcodes::Application.routes.draw do
   
   get "latlng/:latlng", to: 'postcode#reverse', as: "latlng", :constraints => { :latlng => /[^\/]+(?=\.html\z|\.json\z|\.csv\z|\.rdf\z)|[^\/]+/ }
     
+  get ":page", to: 'application#static'
+    
 end
