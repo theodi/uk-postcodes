@@ -17,11 +17,5 @@
 .DS_Store
 
 /lib/NSPL_AUG_2013_UK.csv
-/lib/parish_region.*
-/lib/county_electoral_division_region.*
-
-/lib/basic_county_info.nt
-
-/lib/basic_district_borough_unitary_info.nt
-/lib/basic_district_borough_unitary_ward_info.nt
-/lib/basic_westminster_const_info.nt
+/lib/data/parish_region.*
+/lib/data/county_electoral_division_region.*
