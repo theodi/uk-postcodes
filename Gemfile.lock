@@ -25,6 +25,12 @@ GIT
     alternate_rails (0.0.1)
       rails (~> 3.2.13)
 
+GIT
+  remote: git://github.com/theodi/breasal.git
+  revision: 85af388c8a8a122493713a48bec88e31d23496f8
+  specs:
+    breasal (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -234,6 +240,7 @@ PLATFORMS
 
 DEPENDENCIES
   alternate_rails!
+  breasal!
   coffee-rails (~> 3.2.1)
   dbf
   geodesic

@@ -1,5 +1,5 @@
 require 'csv'
-require 'OSGB36'
+require 'breasal'
 require 'uk_postcode'
 require 'geo_ruby/shp'
 require 'zip/filesystem'
@@ -15,7 +15,7 @@ class Import
     
     zip = Zip::File.open(path)
     result = zip.file.read("NSPL_AUG_2013_UK.csv")
-    CSV.parse(result).each do |row|
+    CSV.parse(result, {:headers => true}).each do |row|
       p = UKPostcode.new(row[0])
       postcode = p.norm      
       easting = row[6].to_i
@@ -27,10 +27,12 @@ class Import
       constituency = row[17]
       
       if country == "N92000002"
-        ll = OSGB36.en_to_ll(easting, northing, :ie)
+        en = Breasal::EastingNorthing.new(easting: easting, northing: northing, type: :ie)
       else
-        ll = OSGB36.en_to_ll(easting, northing)
+        en = Breasal::EastingNorthing.new(easting: easting, northing: northing)
       end
+      
+      ll = en.to_wgs84
       
       Postcode.create(:postcode        => postcode,
                       :eastingnorthing => [easting, northing],
