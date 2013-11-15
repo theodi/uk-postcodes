@@ -200,6 +200,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rubyzip (1.1.0)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -249,6 +250,7 @@ DEPENDENCIES
   pry-remote
   rack-cors
   rails (= 3.2.14)
+  rubyzip
   sass-rails (~> 3.2.3)
   sqlite3
   therubyracer

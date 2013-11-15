@@ -21,5 +21,12 @@ namespace :import do
     Import.codes
     Import.ni_codes
   end
+  
+  desc "Import all"
+  task :all => :environment do
+    Import.postcodes
+    Import.codes
+    Import.ni_codes
+  end
 
 end

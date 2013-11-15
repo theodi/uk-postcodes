@@ -2,12 +2,20 @@ require 'csv'
 require 'OSGB36'
 require 'uk_postcode'
 require 'geo_ruby/shp'
+require 'zip/filesystem'
 
 class Import
   
+  def self.setup
+    
+  end
+  
   def self.postcodes
-    path = Rails.root.join('lib', 'NSPL_AUG_2013_UK.csv')
-    CSV.foreach(path) do |row|
+    path = Rails.root.join('lib', 'data', 'postcodes.zip')
+    
+    zip = Zip::File.open(path)
+    result = zip.file.read("NSPL_AUG_2013_UK.csv")
+    CSV.parse(result).each do |row|
       p = UKPostcode.new(row[0])
       postcode = p.norm      
       easting = row[6].to_i
@@ -38,7 +46,7 @@ class Import
   
   def self.electoraldistricts
     file = Rails.root.join('lib', 'county_electoral_division_region').to_s
-    boundaries(file, "electoral")
+    boundaries(file, "electoraldistrict")
   end
   
   def self.parishes
@@ -51,7 +59,9 @@ class Import
       shp.each do |shape|
         name = shape.data['NAME']
         code = shape.data['UNIT_ID']
-        geom = shape.geometry.to_coordinates
+        geom = shape.geometry.to_coordinates.first.first
+        
+        puts name
                 
         Boundary.create(:name  => name,
                         :code  => code,
@@ -62,7 +72,23 @@ class Import
     end
   end
   
+  def self.add_extras
+    ["electoraldistrict", "parish"].each do |type|
+      boundaries = Boundary.where(:type => type)
+      boundaries.each do |boundary|
+        Postcode.within_polygon(eastingnorthing: boundary.shape).each do |postcode|
+          postcode.send("#{type}=", boundary.code)
+          postcode.save
+        end
+        puts boundary.name
+      end
+    end
+  end
+    
   def self.codes
+    path = Rails.root.join('lib', 'data', 'codes.zip')
+    zip = Zip::File.open(path)
+    
     codes = {
       :council      => "basic_district_borough_unitary_info.nt",
       :ward         => "basic_district_borough_unitary_ward_info.nt",
@@ -71,10 +97,10 @@ class Import
     }
     
     codes.each do |type, file|
-      file = Rails.root.join('lib', file).to_s
+      result = zip.file.read(file)
       areas = {}
 
-      RDF::NTriples::Reader.open(file) do |reader|
+      RDF::NTriples::Reader.new(result) do |reader|
         reader.each_statement do |statement|
           @s = statement
           areas[@s.subject.to_s] ||= {}
