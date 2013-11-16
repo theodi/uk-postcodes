@@ -99,7 +99,7 @@ class Import
     }
     
     codes.each do |type, file|
-      result = zip.file.read(file)
+      result = zip.file.read("codes/#{file}")
       areas = {}
 
       RDF::NTriples::Reader.new(result) do |reader|
@@ -128,7 +128,7 @@ class Import
     }
     
     codes.each do |type, file|
-      file = Rails.root.join('lib', file).to_s
+      file = Rails.root.join('lib', "data/#{file}").to_s
       
       if type == :council
         type = "District"
