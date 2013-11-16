@@ -59,13 +59,17 @@ class Postcode
     val = method_name.to_s.match(/(.+)_details/)
     unless val.nil?
       c = Code.where(:gss => self.send(val[1])).first
-      {
-        :name => c.name,
-        :gss => c.gss,
-        :ons_uri => "http://statistics.data.gov.uk/id/statistical-geography/#{c.gss}",
-        :os_uri => "http://data.ordnancesurvey.co.uk/id/#{c.os}",
-        :type => c.type
-      }
+      unless c.nil?
+        {
+          :name => c.name,
+          :gss => c.gss,
+          :ons_uri => "http://statistics.data.gov.uk/id/statistical-geography/#{c.gss}",
+          :os_uri => "http://data.ordnancesurvey.co.uk/id/#{c.os}",
+          :type => c.type
+        }
+      else
+        {}
+      end 
     else
       super
     end
