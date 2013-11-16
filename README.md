@@ -14,21 +14,21 @@ I've included all the necessary data in this repo (which I will keep updated). T
 
 ### Clone the repo
 
-  git clone git@github.com:theodi/uk-postcodes.git
+    git clone git@github.com:theodi/uk-postcodes.git
   
 ### Run bundler
   
-  bundle install
+    bundle install
   
 ### Import the data
 
-  rake import:all
+    rake import:all
 
 (This will take a good 40 minutes to an hour, so go outside and play, or something)
 
 ### Run the app
 
-  rails s
+    rails s
   
 Obviously if you're running this in production, you may need to do some other steps, but these steps should be all you need to get it running locally.
 
