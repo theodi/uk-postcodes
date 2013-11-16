@@ -11,10 +11,10 @@ class Import
   end
   
   def self.postcodes
-    path = Rails.root.join('lib', 'data', 'postcodes.zip')
-    
+    path = postcode_path
     zip = Zip::File.open(path)
     result = zip.file.read("NSPL_AUG_2013_UK.csv")
+    
     CSV.parse(result, {:headers => true}).each do |row|
       p = UKPostcode.new(row[0])
       postcode = p.norm      
@@ -44,6 +44,10 @@ class Import
                       :country         => country
                       )
     end
+  end
+  
+  def self.postcode_path
+    path = Rails.root.join('lib', 'data', 'postcodes.zip')
   end
   
   def self.electoraldistricts
