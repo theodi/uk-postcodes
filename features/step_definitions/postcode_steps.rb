@@ -9,3 +9,12 @@ Then(/^I should see the following details:$/) do |table|
     expect(dd).to have_content v
   end
 end
+
+Given(/^I access the (.*?) version of "(.*?)"$/) do |format, postcode|
+  postcode.gsub!(" ", "")
+  visit ("/postcode/#{postcode}.#{format.downcase}")
+end
+
+Then(/^I should see the following json:$/) do |string|
+  JSON.parse(page.body).should eql(JSON.parse(string.squish))
+end
