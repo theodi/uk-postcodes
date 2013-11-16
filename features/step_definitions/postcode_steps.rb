@@ -22,3 +22,14 @@ end
 Then(/^I should see the following xml|rdf|csv:$/) do |string|
   page.body.squish.should eql string.squish
 end
+
+Given(/^I try and access the page for "(.*?)" with a space$/) do |postcode|
+  @postcode = postcode
+  visit ("/postcode/#{URI.escape(@postcode)}")
+end
+
+Then(/^I should be redirected to the canonical URL for the postcode$/) do
+  postcode = @postcode.gsub(" ", "")
+  page.current_path.should eql "/postcode/#{postcode}.html"
+end
+
