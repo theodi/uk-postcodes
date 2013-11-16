@@ -46,6 +46,7 @@ end
 group :test do
   gem 'cucumber-rails', :require => false
   gem 'rspec'
+  gem 'simplecov'
   gem 'pry'
   gem 'database_cleaner'
 end
