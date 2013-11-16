@@ -19,6 +19,6 @@ Then(/^I should see the following json:$/) do |string|
   JSON.parse(page.body).should eql(JSON.parse(string.squish))
 end
 
-Then(/^I should see the following xml|rdf:$/) do |string|
+Then(/^I should see the following xml|rdf|csv:$/) do |string|
   page.body.squish.should eql string.squish
 end

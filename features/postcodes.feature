@@ -118,3 +118,10 @@ Feature: Accessing postcode data
           </ns0:PostcodeUnit>
         </rdf:RDF>
         """
+        
+        Scenario: Access CSV version
+          Given I access the CSV version of "AB1 0AA"
+          Then I should see the following csv:
+          """
+          AB1 0AA,57.10147801540051,-2.2428351220462,385386.0,801193.0,http://geohash.org/gfnkugnb4phb,,,S12000033,Aberdeen City,S13002484,Lower Deeside
+          """
