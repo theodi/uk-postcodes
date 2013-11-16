@@ -43,7 +43,7 @@ class Postcode
   def admin_areas
     areas = {}
     ADMIN_AREAS.each do |area|
-      unless self.send(area).nil? || self.send(area) == "E99999999"
+      unless self.send(area).nil? || self.send(area).include?("99999999")
         areas[area] = self.send("#{area}_details")
       end
     end
