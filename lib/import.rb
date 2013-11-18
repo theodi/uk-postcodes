@@ -35,8 +35,8 @@ class Import
       ll = en.to_wgs84
       
       Postcode.create(:postcode        => postcode,
-                      :eastingnorthing => [easting, northing],
-                      :latlng          => [ll[:latitude], ll[:longitude]],
+                      :eastingnorthing => "POINT(#{easting} #{northing})",
+                      :latlng          => "POINT(#{ll[:latitude]} #{ll[:longitude]})",
                       :county          => county,
                       :council         => council,
                       :ward            => ward,
