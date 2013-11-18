@@ -7,19 +7,19 @@ class Postcode < ActiveRecord::Base
   ADMIN_AREAS = [:council, :county, :ward, :constituency]
   
   def lat
-    self.latlng[0]
+    self.latlng.x
   end
   
   def lng
-    self.latlng[1]
+    self.latlng.y
   end
   
   def easting
-    self.eastingnorthing[0]
+    self.eastingnorthing.x
   end
   
   def northing
-    self.eastingnorthing[1]
+    self.eastingnorthing.y
   end
   
   def distance_from(latlng)
