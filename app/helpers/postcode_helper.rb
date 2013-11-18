@@ -30,7 +30,7 @@ module PostcodeHelper
     graph << [p, prefixes[:spatialrelations].northing, postcode.northing.to_int ]
     
     unless postcode.country == "N92000002"
-      @postcode.admin_areas.each do |title, area|
+      postcode.admin_areas.each do |title, area|
         graph << [p, prefixes[:spatialrelations]['t_spatiallyInside'], RDF::URI.new(area[:ons_uri]) ]
         os_uri = RDF::URI.new(area[:os_uri])
         graph << [p, prefixes[:spatialrelations][area[:type]], os_uri ]
