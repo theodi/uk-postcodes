@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118092824) do
+ActiveRecord::Schema.define(:version => 20131118222201) do
 
   create_table "boundaries", :force => true do |t|
     t.string  "code"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(:version => 20131118092824) do
     t.string "snac"
     t.string "os"
     t.string "gss"
-    t.string "type"
+    t.string "kind"
   end
 
   create_table "postcodes", :force => true do |t|

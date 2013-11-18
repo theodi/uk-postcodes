@@ -52,7 +52,7 @@ class Postcode < ActiveRecord::Base
           :gss => c.gss,
           :ons_uri => "http://statistics.data.gov.uk/id/statistical-geography/#{c.gss}",
           :os_uri => "http://data.ordnancesurvey.co.uk/id/#{c.os}",
-          :type => c.type
+          :kind => c.kind
         }
       else
         {}

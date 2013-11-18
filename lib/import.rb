@@ -130,9 +130,9 @@ class Import
 
       areas.each do |k, v|
         Code.create(:name   => v['http://www.w3.org/2000/01/rdf-schema#label'],
-                    :os   => k.split('/').last,
+                    :os     => k.split('/').last,
                     :gss    => v['http://data.ordnancesurvey.co.uk/ontology/admingeo/gssCode'],
-                    :type   => v['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'].split('/').last
+                    :kind   => v['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'].split('/').last
                     )
       end
     end
@@ -158,7 +158,7 @@ class Import
         Code.create(:name => row[1],
                     :os   => nil,
                     :gss  => row[0],
-                    :type => type
+                    :kind => type
                     )
       end
     end
