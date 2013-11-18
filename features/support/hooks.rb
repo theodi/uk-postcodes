@@ -10,7 +10,7 @@ Before('@postcode') do
     :country         => "S92000003"
   )
   
-  Code.create(name: "Aberdeen City", snac: nil, os: "7000000000030421", gss: "S12000033")
-  Code.create(name: "Lower Deeside", snac: nil, os: "7000000000043300", gss: "S13002484")
-  Code.create(name: "Aberdeen South", snac: nil, os: "7000000000033487", gss: "S14000002")
+  Code.create(name: "Aberdeen City", snac: nil, os: "7000000000030421", gss: "S12000033", kind: "UnitaryAuthority")
+  Code.create(name: "Lower Deeside", snac: nil, os: "7000000000043300", gss: "S13002484", kind: "UnitaryAuthorityWard")
+  Code.create(name: "Aberdeen South", snac: nil, os: "7000000000033487", gss: "S14000002", kind: "WestminsterConstituency")
 end
