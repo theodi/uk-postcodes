@@ -1,28 +1,38 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgis
+  encoding: unicode
+  postgis_extension: true
+  schema_search_path: public,postgis
   pool: 5
-  timeout: 5000
+  database: uk_postcodes_development    # substitute your dev database name
+  username: uk_postcodes                # substitute the username your app will use to connect
+  password:                             # substitute the user's password
+  su_username: root                     # substitute a superuser for the database
+  su_password:                          # substitute the superuser's password
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
 test: &test
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgis
+  encoding: unicode
+  postgis_extension: true
+  schema_search_path: public,postgis
   pool: 5
-  timeout: 5000
+  database: uk_postcodes_test      # substitute your dev database name
+  username: uk_postcodes           # substitute the username your app will use to connect
+  password:                        # substitute the user's password
+  su_username: root                # substitute a superuser for the database
+  su_password:                     # substitute the superuser's password
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgis
+  encoding: unicode
+  postgis_extension: true
+  schema_search_path: public,postgis
   pool: 5
-  timeout: 5000
+  database: my_app_production     # substitute your dev database name
+  username: my_app_user           # substitute the username your app will use to connect
+  password: my_app_password       # substitute the user's password
+  su_username: my_global_user     # substitute a superuser for the database
+  su_password: my_global_pasword  # substitute the superuser's password
 
 cucumber:
   <<: *test
