@@ -1,21 +1,8 @@
-class Postcode
-  include Mongoid::Document
-  include Mongoid::Geospatial
+class Postcode < ActiveRecord::Base
   
-  field :postcode, type: String
-  field :eastingnorthing, type: Point
-  field :latlng, type: Array, type: Point
-  field :council
-  field :county
-  field :electoraldistrict
-  field :ward
-  field :constituency
-  field :country
-  
-  spatial_index :eastingnorthing
-  spatial_index :latlng
-  
-  index({ postcode: 1 }, { unique: true, name: "postcode_index" })
+  self.rgeo_factory_generator = RGeo::Geos.factory_generator
+
+  set_rgeo_factory_for_column(:latlng, RGeo::Geographic.spherical_factory(:srid => 4326))
   
   ADMIN_AREAS = [:council, :county, :ward, :constituency]
   
@@ -93,4 +80,5 @@ class Postcode
         ]
     end
   end
+  
 end
