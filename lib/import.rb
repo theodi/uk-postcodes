@@ -28,32 +28,34 @@ class Import
   def self.save(rows)
     rows.each do |row|
       p = UKPostcode.new(row[0])
-      postcode = p.norm      
-      easting = row[6].to_i
-      northing = row[7].to_i
-      county = row[10]
-      council = row[11]
-      ward = row[12]
-      country = row[15]
-      constituency = row[17]
+      if p.valid?
+        postcode = p.norm      
+        easting = row[6].to_i
+        northing = row[7].to_i
+        county = row[10]
+        council = row[11]
+        ward = row[12]
+        country = row[15]
+        constituency = row[17]
     
-      if country == "N92000002"
-        en = Breasal::EastingNorthing.new(easting: easting, northing: northing, type: :ie)
-      else
-        en = Breasal::EastingNorthing.new(easting: easting, northing: northing)
+        if country == "N92000002"
+          en = Breasal::EastingNorthing.new(easting: easting, northing: northing, type: :ie)
+        else
+          en = Breasal::EastingNorthing.new(easting: easting, northing: northing)
+        end
+    
+        ll = en.to_wgs84
+    
+        Postcode.create(:postcode        => postcode,
+                        :eastingnorthing => "POINT(#{easting} #{northing})",
+                        :latlng          => "POINT(#{ll[:latitude]} #{ll[:longitude]})",
+                        :county          => county,
+                        :council         => council,
+                        :ward            => ward,
+                        :constituency    => constituency,
+                        :country         => country
+                        )
       end
-    
-      ll = en.to_wgs84
-    
-      Postcode.create(:postcode        => postcode,
-                      :eastingnorthing => "POINT(#{easting} #{northing})",
-                      :latlng          => "POINT(#{ll[:latitude]} #{ll[:longitude]})",
-                      :county          => county,
-                      :council         => council,
-                      :ward            => ward,
-                      :constituency    => constituency,
-                      :country         => country
-                      )
     end
   end
   
