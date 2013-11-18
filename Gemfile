@@ -22,6 +22,10 @@ gem 'pr_geohash'
 gem 'geodesic'
 gem 'rubyzip'
 
+gem 'pg'
+gem 'activerecord-postgis-adapter'
+gem 'squeel'
+
 gem "therubyracer"
 gem "less-rails"
 gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails', :branch => 'bootstrap3'
