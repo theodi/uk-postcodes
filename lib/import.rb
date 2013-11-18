@@ -13,7 +13,6 @@ class Import
   def self.postcodes
     path = postcode_path
     zip = Zip::File.open(path)
-    #result = zip.file.read("NSPL_AUG_2013_UK.csv")
     lines = []
     zip.file.foreach("NSPL_AUG_2013_UK.csv") do |line|
       lines << line
@@ -23,6 +22,8 @@ class Import
         lines = []
       end
     end
+    rows = CSV.parse(lines.join, {:headers => true})
+    save rows
   end
   
   def self.save(rows)
