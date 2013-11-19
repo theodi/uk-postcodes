@@ -16,9 +16,9 @@ require Rails.root.join('lib', 'import')
 
 ActionController::Base.allow_rescue = false
 
-DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.strategy = :transaction
 
-Cucumber::Rails::Database.javascript_strategy = :truncation
+Cucumber::Rails::Database.javascript_strategy = :truncation, {:except=>%w[spatial_ref_sys]} 
 
 Before do
   DatabaseCleaner.start
