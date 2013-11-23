@@ -2,5 +2,4 @@ language: ruby
 rvm:
 - 1.9.3
 before_script:
-  - psql -c "CREATE USER uk_postcodes;" -U postgres
-  - psql -c 'CREATE DATABASE uk_postcodes_test;'
+  - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
