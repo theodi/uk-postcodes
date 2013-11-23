@@ -13,36 +13,50 @@ class Import
   def self.postcodes
     path = postcode_path
     zip = Zip::File.open(path)
-    result = zip.file.read("NSPL_AUG_2013_UK.csv")
-    
-    CSV.parse(result, {:headers => true}).each do |row|
-      p = UKPostcode.new(row[0])
-      postcode = p.norm      
-      easting = row[6].to_i
-      northing = row[7].to_i
-      county = row[10]
-      council = row[11]
-      ward = row[12]
-      country = row[15]
-      constituency = row[17]
-      
-      if country == "N92000002"
-        en = Breasal::EastingNorthing.new(easting: easting, northing: northing, type: :ie)
-      else
-        en = Breasal::EastingNorthing.new(easting: easting, northing: northing)
+    lines = []
+    zip.file.foreach("NSPL_AUG_2013_UK.csv") do |line|
+      lines << line
+      if lines.size >= 1000
+        rows = CSV.parse(lines.join, {:headers => true})
+        save rows
+        lines = []
       end
-      
-      ll = en.to_wgs84
-      
-      Postcode.create(:postcode        => postcode,
-                      :eastingnorthing => [easting, northing],
-                      :latlng          => [ll[:latitude], ll[:longitude]],
-                      :county          => county,
-                      :council         => council,
-                      :ward            => ward,
-                      :constituency    => constituency,
-                      :country         => country
-                      )
+    end
+    rows = CSV.parse(lines.join, {:headers => true})
+    save rows
+  end
+  
+  def self.save(rows)
+    rows.each do |row|
+      p = UKPostcode.new(row[0])
+      if p.valid?
+        postcode = p.norm      
+        easting = row[6].to_i
+        northing = row[7].to_i
+        county = row[10]
+        council = row[11]
+        ward = row[12]
+        country = row[15]
+        constituency = row[17]
+    
+        if country == "N92000002"
+          en = Breasal::EastingNorthing.new(easting: easting, northing: northing, type: :ie)
+        else
+          en = Breasal::EastingNorthing.new(easting: easting, northing: northing)
+        end
+    
+        ll = en.to_wgs84
+    
+        Postcode.create(:postcode        => postcode,
+                        :eastingnorthing => "POINT(#{easting} #{northing})",
+                        :latlng          => "POINT(#{ll[:latitude]} #{ll[:longitude]})",
+                        :county          => county,
+                        :council         => council,
+                        :ward            => ward,
+                        :constituency    => constituency,
+                        :country         => country
+                        )
+      end
     end
   end
   
@@ -116,9 +130,9 @@ class Import
 
       areas.each do |k, v|
         Code.create(:name   => v['http://www.w3.org/2000/01/rdf-schema#label'],
-                    :os   => k.split('/').last,
+                    :os     => k.split('/').last,
                     :gss    => v['http://data.ordnancesurvey.co.uk/ontology/admingeo/gssCode'],
-                    :type   => v['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'].split('/').last
+                    :kind   => v['http://www.w3.org/1999/02/22-rdf-syntax-ns#type'].split('/').last
                     )
       end
     end
@@ -144,7 +158,7 @@ class Import
         Code.create(:name => row[1],
                     :os   => nil,
                     :gss  => row[0],
-                    :type => type
+                    :kind => type
                     )
       end
     end

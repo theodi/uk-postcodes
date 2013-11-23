@@ -9,8 +9,6 @@ gem 'rails', '3.2.14'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
-gem 'mongoid', '~> 3.1.0'
-gem 'mongoid_geospatial', :github => 'nofxx/mongoid_geospatial'
 gem 'osgb'
 gem 'uk_postcode'
 gem 'dbf'
@@ -21,6 +19,10 @@ gem 'jbuilder'
 gem 'pr_geohash'
 gem 'geodesic'
 gem 'rubyzip'
+
+gem 'pg'
+gem 'activerecord-postgis-adapter'
+gem 'squeel'
 
 gem "therubyracer"
 gem "less-rails"

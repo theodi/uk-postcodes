@@ -28,12 +28,12 @@
       </div>
       <div class="col-md-5">
         <%= map(:center => {
-            :latlng => @postcode.latlng,
+            :latlng => [@postcode.lat, @postcode.lng],
             :zoom => 16,
             },
             :markers => [
               {
-                 :latlng => @postcode.latlng,
+                 :latlng => [@postcode.lat, @postcode.lng],
               }
             ]
         )%>
