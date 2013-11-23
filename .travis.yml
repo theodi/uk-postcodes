@@ -3,4 +3,4 @@ rvm:
 - 1.9.3
 before_script:
   - psql -c "CREATE USER uk_postcodes;" -U postgres
-  - psql -c 'create database uk_postcodes_test;' -U uk_postcodes
+  - psql -c 'CREATE DATABASE uk_postcodes_test;'
