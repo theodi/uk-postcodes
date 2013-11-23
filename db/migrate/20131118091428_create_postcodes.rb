@@ -1,5 +1,9 @@
 class CreatePostcodes < ActiveRecord::Migration
   def up
+    execute <<-SQL
+        CREATE EXTENSION postgis;
+    SQL
+    
     create_table :postcodes do |t|
       t.string :postcode
       t.point :eastingnorthing
