@@ -1,5 +1,6 @@
 language: ruby
 rvm:
 - 1.9.3
+before_install: ./travis/before_install.sh
 before_script:
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
