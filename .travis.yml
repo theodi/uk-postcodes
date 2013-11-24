@@ -1,7 +1,8 @@
 language: ruby
 rvm:
 - 1.9.3
-before_install: ./travis/before_install.sh
+install:
+  - sudo apt-get install postgresql-9.1-postgis -q
 before_script:
   - createdb -U postgres template_postgis
   - psql -U postgres -d template_postgis -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
