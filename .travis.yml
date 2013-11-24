@@ -3,5 +3,9 @@ rvm:
 - 1.9.3
 before_install: ./travis/before_install.sh
 before_script:
-  - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
-  - psql -d uk_postcodes_test -c 'CREATE EXTENSION postgis;' -U postgres
+  - createdb -U postgres template_postgis
+  - psql -U postgres -d template_postgis -f /usr/share/postgresql/9.1/contrib/postgis-1.5/postgis.sql
+  - psql -U postgres -d template_postgis -f /usr/share/postgresql/9.1/contrib/postgis-1.5/spatial_ref_sys.sql
+  - createdb -U postgres -T template_postgis uk_postcodes_test
+  # - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
+  # - psql -d uk_postcodes_test -c 'CREATE EXTENSION postgis;' -U postgres
