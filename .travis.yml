@@ -4,3 +4,4 @@ rvm:
 before_install: ./travis/before_install.sh
 before_script:
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
+  - psql -d uk_postcodes_test -c 'CREATE EXTENSION postgis;' -U postgres
