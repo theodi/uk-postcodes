@@ -5,6 +5,8 @@ set :branch, 'master'
 set :deploy_to, '/var/www/uk-postcodes'
 set :scm, :git
 
+set :linked_files, %w{config/database.yml}
+
 # set :format, :pretty
 # set :log_level, :debug
 # set :pty, true
