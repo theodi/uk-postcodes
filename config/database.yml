@@ -4,6 +4,7 @@ development:
   postgis_extension: true
   schema_search_path: public,postgis
   pool: 5
+  host: localhost
   database: uk_postcodes_development    # substitute your dev database name
   username: uk_postcodes                # substitute the username your app will use to connect
   password:                             # substitute the user's password
@@ -16,6 +17,7 @@ test: &test
   postgis_extension: true
   # schema_search_path: public,postgis
   pool: 5
+  host: localhost
   database: uk_postcodes_test      # substitute your dev database name
   username: postgres               # substitute the username your app will use to connect
   password:                        # substitute the user's password
