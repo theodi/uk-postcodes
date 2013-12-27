@@ -21,3 +21,6 @@
 /lib/data/county_electoral_division_region.*
 
 /coverage/
+config/database.yml
+
+/config/database.yml
