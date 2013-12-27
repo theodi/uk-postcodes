@@ -10,6 +10,9 @@ gem 'rails', '3.2.14'
 
 gem 'thin'
 gem 'foreman'
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'rvm1-capistrano3'
 
 gem 'sqlite3'
 gem 'osgb'

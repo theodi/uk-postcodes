@@ -57,6 +57,16 @@ GEM
     addressable (2.3.5)
     arel (3.0.2)
     builder (3.0.4)
+    capistrano (3.0.1)
+      i18n
+      rake (>= 10.0.0)
+      sshkit (>= 0.0.23)
+    capistrano-bundler (1.1.1)
+      capistrano (~> 3.0)
+      sshkit (>= 1.2.0)
+    capistrano-rails (1.1.0)
+      capistrano (>= 3.0.0)
+      capistrano-bundler (>= 1.0.0)
     capybara (2.1.0)
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -149,6 +159,9 @@ GEM
     mini_portile (0.5.2)
     multi_json (1.8.2)
     multi_test (0.0.2)
+    net-scp (1.1.2)
+      net-ssh (>= 2.6.5)
+    net-ssh (2.7.0)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     osgb (0.3.1)
@@ -239,6 +252,9 @@ GEM
       diff-lcs (>= 1.1.3, < 2.0)
     rspec-mocks (2.14.4)
     rubyzip (1.1.0)
+    rvm1-capistrano3 (1.1.1)
+      capistrano (~> 3.0)
+      sshkit (>= 1.2)
     sass (3.2.12)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -261,8 +277,14 @@ GEM
       activerecord (>= 3.0)
       activesupport (>= 3.0)
       polyamorous (~> 0.6.0)
+    sshkit (1.3.0)
+      net-scp (>= 1.1.2)
+      net-ssh
+      term-ansicolor
     sxp (0.1.3)
       json (>= 1.1.1)
+    term-ansicolor (1.2.2)
+      tins (~> 0.8)
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
@@ -272,6 +294,7 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
+    tins (0.13.1)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -290,6 +313,8 @@ DEPENDENCIES
   activerecord-postgis-adapter
   alternate_rails!
   breasal!
+  capistrano
+  capistrano-rails
   coffee-rails (~> 3.2.1)
   cucumber-rails
   database_cleaner
@@ -311,6 +336,7 @@ DEPENDENCIES
   rails (= 3.2.14)
   rspec
   rubyzip
+  rvm1-capistrano3
   sass-rails (~> 3.2.3)
   simplecov
   sqlite3
