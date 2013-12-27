@@ -30,11 +30,11 @@ production:
   postgis_extension: true
   schema_search_path: public,postgis
   pool: 5
-  database: my_app_production     # substitute your dev database name
-  username: my_app_user           # substitute the username your app will use to connect
-  password: my_app_password       # substitute the user's password
-  su_username: my_global_user     # substitute a superuser for the database
-  su_password: my_global_pasword  # substitute the superuser's password
+  database: uk_postcodes_production     # substitute your dev database name
+  username: uk_postcodes                # substitute the username your app will use to connect
+  password:                             # substitute the user's password
+  su_username: root     # substitute a superuser for the database
+  su_password:   # substitute the superuser's password
 
 cucumber:
   <<: *test
