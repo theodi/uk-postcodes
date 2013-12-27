@@ -83,17 +83,23 @@ GEM
       cucumber (>= 1.2.0)
       nokogiri (>= 1.5.0)
       rails (>= 3.0.0)
+    daemons (1.1.9)
     database_cleaner (1.2.0)
     dbf (2.0.6)
       fastercsv (~> 1.5.4)
     diff-lcs (1.2.5)
     docile (1.1.0)
+    dotenv (0.9.0)
     ebnf (0.3.1)
       rdf
       sxp
     erubis (2.7.0)
+    eventmachine (1.0.3)
     execjs (2.0.2)
     fastercsv (1.5.5)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     geodesic (1.0.1)
     georuby (2.2.0)
     gherkin (2.12.2)
@@ -260,6 +266,10 @@ GEM
     therubyracer (0.12.0)
       libv8 (~> 3.16.14.0)
       ref
+    thin (1.6.1)
+      daemons (>= 1.0.9)
+      eventmachine (>= 1.0.0)
+      rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
     treetop (1.4.15)
@@ -284,6 +294,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   dbf
+  foreman
   geodesic
   georuby
   jbuilder
@@ -305,6 +316,7 @@ DEPENDENCIES
   sqlite3
   squeel
   therubyracer
+  thin
   twitter-bootstrap-rails!
   uglifier (>= 1.0.3)
   uk_postcode
