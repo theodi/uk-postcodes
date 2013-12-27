@@ -15,7 +15,7 @@ test: &test
   adapter: postgis
   encoding: unicode
   postgis_extension: true
-  # schema_search_path: public,postgis
+  schema_search_path: public,postgis
   pool: 5
   host: localhost
   database: uk_postcodes_test      # substitute your dev database name
