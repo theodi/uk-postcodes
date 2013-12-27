@@ -3,5 +3,5 @@ rvm:
 - 1.9.3
 before_script:
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
-  #- psql -d uk_postcodes_test -c 'CREATE EXTENSION postgis;' -U postgres
+  - psql -d uk_postcodes_test -c 'CREATE SCHEMA postgis; CREATE EXTENSION postgis WITH SCHEMA postgis;' -U postgres
   - rake db:migrate
