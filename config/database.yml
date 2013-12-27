@@ -14,7 +14,7 @@ test: &test
   adapter: postgis
   encoding: unicode
   postgis_extension: true
-  schema_search_path: public,postgis
+  # schema_search_path: public,postgis
   pool: 5
   database: uk_postcodes_test      # substitute your dev database name
   username: postgres               # substitute the username your app will use to connect
