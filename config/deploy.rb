@@ -29,6 +29,7 @@ namespace :deploy do
   
   before :updated, :symlink_shared do
     on roles(:web) do
+      execute "rm #{release_path}/config/database.yml"
       execute "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     end
   end
