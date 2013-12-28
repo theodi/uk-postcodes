@@ -22,14 +22,13 @@ namespace :deploy do
 
   desc 'Restart application'
   task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      foreman:export
-      foreman:restart
+    on roles(:web), in: :sequence, wait: 5 do
+      execute "touch  #{release_path}/tmp/restart.txt"
     end
   end
   
   before :updated, :symlink_shared do
-    on roles(:app) do
+    on roles(:web) do
       execute "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     end
   end
