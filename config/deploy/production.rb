@@ -7,6 +7,8 @@ set :stage, :production
 # unless any hosts have the primary property set.
 role :web, %w{deploy@162.243.77.171}
 
+set :rails_env, 'production'
+
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server
