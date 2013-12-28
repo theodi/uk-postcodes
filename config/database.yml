@@ -1,0 +1,41 @@
+development:
+  adapter: postgis
+  encoding: unicode
+  postgis_extension: true
+  schema_search_path: public,postgis
+  pool: 5
+  host: localhost
+  database: uk_postcodes_development    # substitute your dev database name
+  username: uk_postcodes                # substitute the username your app will use to connect
+  password:                             # substitute the user's password
+  su_username: root                     # substitute a superuser for the database
+  su_password:                          # substitute the superuser's password
+
+test: &test
+  adapter: postgis
+  encoding: unicode
+  postgis_extension: true
+  schema_search_path: public,postgis
+  pool: 5
+  host: localhost
+  database: uk_postcodes_test      # substitute your dev database name
+  username: postgres               # substitute the username your app will use to connect
+  password:                        # substitute the user's password
+  su_username: root                # substitute a superuser for the database
+  su_password:                     # substitute the superuser's password
+
+production:
+  adapter: postgis
+  encoding: unicode
+  postgis_extension: true
+  schema_search_path: public,postgis
+  pool: 5
+  host: localhost
+  database: OVERWRITTEN_ON_DEPLOY     # substitute your dev database name
+  username: OVERWRITTEN_ON_DEPLOY     # substitute the username your app will use to connect
+  password: OVERWRITTEN_ON_DEPLOY     # substitute the user's password
+  su_username: OVERWRITTEN_ON_DEPLOY  # substitute a superuser for the database
+  su_password: OVERWRITTEN_ON_DEPLOY  # substitute the superuser's password
+
+cucumber:
+  <<: *test
