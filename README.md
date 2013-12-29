@@ -3,7 +3,7 @@
 This is the next generation version of [http://www.uk-postcodes.com](http://www.uk-postcodes.com). The functionality is largely unchanged, but improvements include:
 
 * Better codebase (bye bye PHP)
-* MongoDB backend
+* PostGIS backend
 * (Hopefully) better support
 * New design
 * Easy setup for local installs
@@ -24,7 +24,7 @@ I've included all the necessary data in this repo (which I will keep updated). T
 
     rake import:all
 
-(This will take a good 40 minutes to an hour, so go outside and play, or something)
+(This will take a couple of hours, so go outside and play, or something)
 
 ### Run the app
 
