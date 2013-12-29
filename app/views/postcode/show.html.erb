@@ -15,7 +15,7 @@
         <dt>Geohash URI</dt>
         <dd class="geohash_uri"><%= link_to @postcode.geohash, @postcode.geohash %></dd>
         <dt>Openly Local URL</dt>
-        <dd class="openly_local_url"><%= link_to "http://openlylocal.com/areas/postcodes/#{@postcode.postcode.gsub(' ', '')}" %></dd>          
+        <dd class="openly_local_url"><%= link_to "http://openlylocal.com/areas/postcodes/#{@postcode.postcode.gsub(' ', '')}", "http://openlylocal.com/areas/postcodes/#{@postcode.postcode.gsub(' ', '')}" %></dd>          
         <% @postcode.admin_areas.each do |title, area| %>
             <dt><%= title.to_s.titleize %></dt> 
             <% if @postcode.country == "N92000002" %>
