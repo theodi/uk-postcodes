@@ -1,7 +1,7 @@
 class PostcodeController < ApplicationController
   include PostcodeHelper
   
-  caches_page :index, :show, :nearest
+  caches_page :index, :show
   
   before_filter(:only => [:show, :nearest]) { alternate_formats [:json, :xml, :rdf, :csv] }
   
