@@ -41,29 +41,26 @@ class PostcodeController < ApplicationController
   end
   
   def nearest
-    # NOT YET IMPLEMENTED
-    # p = UKPostcode.new(params[:postcode])
-    # @postcode = Postcode.where(:postcode => p.norm).first
-    # # This is a rough conversion to radians
-    # radius = params[:miles].to_f / 69
-    # @postcodes = Postcode.within_circle(latlng: [@postcode.latlng.to_a, radius]).to_a
-    # # Remove any postcodes with a distance of more than the number of miles (there should only be a few)
-    # @postcodes.select!{|p| p.distance_from(@postcode.latlng) < params[:miles].to_f}
-    # @postcodes.sort_by!{|p| p.distance_from(@postcode.latlng)}
-    # 
-    # respond_to do |format|
-    #   format.html
-    #   format.json
-    #   format.xml
-    #   format.rdf { nearest_rdf(@postcodes) }
-    #   format.csv do
-    #     csv = []
-    #     @postcodes.each do |postcode|
-    #       csv << postcode.to_csv
-    #     end
-    #     render :text => csv.join()
-    #   end
-    # end
+    p = UKPostcode.new(params[:postcode])
+    @postcode = Postcode.where(:postcode => p.norm).first
+        
+    distance = params[:miles].to_f * 1609.344
+        
+    @postcodes = Postcode.where("ST_Distance(latlng, 'POINT(#{@postcode.lat} #{@postcode.lng})') < #{distance}")    
+        
+    respond_to do |format|
+      format.html
+      format.json
+      format.xml
+      format.rdf { nearest_rdf(@postcodes) }
+      format.csv do
+        csv = []
+        @postcodes.each do |postcode|
+          csv << postcode.to_csv
+        end
+        render :text => csv.join()
+      end
+    end
   end
   
   def reverse
@@ -75,7 +72,7 @@ class PostcodeController < ApplicationController
     
     params[:format] ||= "html"
     
-    postcode = Postcode.where("ST_Distance(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})') < 100").first
+    postcode = Postcode.where("ST_Distance(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})') < 10").first
     p = postcode.postcode.gsub(" ", "")
     redirect_to postcode_url(p, format: params[:format]), status: "303"
   end
