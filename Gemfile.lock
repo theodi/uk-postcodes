@@ -162,6 +162,7 @@ GEM
     net-scp (1.1.2)
       net-ssh (>= 2.6.5)
     net-ssh (2.7.0)
+    newrelic_rpm (3.7.1.180)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     osgb (0.3.1)
@@ -327,6 +328,7 @@ DEPENDENCIES
   leaflet-rails
   less-rails
   linkeddata
+  newrelic_rpm
   osgb
   pg
   pr_geohash
