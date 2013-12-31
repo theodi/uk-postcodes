@@ -23,7 +23,8 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:web), in: :sequence, wait: 5 do
-      execute "touch  #{release_path}/tmp/restart.txt"
+      run "/etc/init.d/unicorn_#{application} restart"
+      #execute "touch  #{release_path}/tmp/restart.txt"
     end
   end
   
