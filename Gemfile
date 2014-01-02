@@ -8,7 +8,8 @@ gem 'rails', '3.2.14'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'unicorn'
+gem 'thin'
+gem 'foreman'
 gem 'capistrano', :require => false
 gem 'capistrano-rails', :require => false
 gem 'rvm1-capistrano3', :require => false

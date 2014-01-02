@@ -23,8 +23,7 @@ namespace :deploy do
   desc 'Restart application'
   task :restart do
     on roles(:web), in: :sequence, wait: 5 do
-      execute "/etc/init.d/unicorn_uk-postcodes restart"
-      #execute "touch  #{release_path}/tmp/restart.txt"
+      execute "touch  #{release_path}/tmp/restart.txt"
     end
   end
   
