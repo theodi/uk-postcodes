@@ -5,6 +5,6 @@ before_script:
   - psql -c 'CREATE USER root with SUPERUSER;' -U postgres
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
   - psql -d uk_postcodes_test -c 'CREATE SCHEMA postgis; CREATE EXTENSION postgis WITH SCHEMA postgis;' -U postgres
-  - rake db:migrate
+  - bundle exec rake db:migrate
 after_success:
   - "[ \"$TRAVIS_BRANCH\" == \"master\" ] && cap production deploy"
