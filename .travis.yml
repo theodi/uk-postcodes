@@ -1,10 +1,42 @@
 language: ruby
 rvm:
 - 2.0.0
+env:
+  global:
+    - secure: "QZDeRXTo+dnKu6k9V0fR3QKshld1Ry3EnlqRO8+2kVhHRWNiWLXwzMvLJ6tpUyJ59yRc296lfFKyYdOJrXZYfNJJn8NjwVkOAyRaFx914zo6Ga+AqsjDLXhVf0AnTNM8PZi2V7+QVBXbNmuhUWsxWr13YAW9o5CChyTL8HCXrQc="
+    - secure: "HtKQadfw04trBj7kSrXXZwVtVK4eUH+pXR5mSTXQi9xrXUDEBuBJaQdSDEJjEAFTEPXqiPZZYASuosGo1mw67cryDnLR5WKqtJovaVPZAQ+6rDiD/wfV9t0Ny/sYFDgfxMim7II48vqSmgxsYm1z61Ne3tgVS2aijPUcnHY7DB4="
+    - secure: "PHHLIMZCQU9A7e9xMvXBwmOH6Wxup1W5+8SPvnFhb62MrGNjBl6UrEtJ3OwwWpe43Zy4LECDjm9UgF/rqIFHXVQtMiJ0A6zMeL2w9ZuqBOxOBHTILVFIpxljt9keRWyJFfLiJGCGpJOrZ+ajZD+aDLLTJ/GHqX3a5Oz8blzgNIc="
+    - secure: "LNAsaXClda6CTzMQDpUxm4TnIrKum/r+Xsmjb54mn3zpZFtK0z97uRNQGL7rvUnnJ6wcMQH45xqDNDF8JR6FQwkzscc4KBEzB0A7OFb0yGawU1HJxa11/Wgi+z1PBRBjEG6hP/DWsfNvp7hNGb9DRsTfGyaDFvgKpzsIWuZxlzs="
+    - secure: "HmJgRBbX4asqSfU6qlo6zM8OArSkga57UBbuamQLJld+6yu2geRSCz/BstGBPLTmEtU4NTyGIfpdnDpigOPAceH91ow+o44cscYdKXu195dH5QGy57WAeoJrHW0DaXfzBa2E5F2j8+KKCaKTRrqjldIsXzhhJy+2HV/nfiSBEzI="
+    - secure: "B83JSVqjyDFLmPBdQktG1NtIk9Bb1xUqOvaiAu9Aq2D99/RszzYK1g5sKlnxVqxYVbA1Gd79Tyd98sqZ/peZrtI0CYZYXADYeMBBduYbH2ReNQz25hNPg/Ps/wnWBJhuGGWAlplFEX38qRv6DvUzg/Qtf3DoSLca2teUhEDM46A="
+    - secure: "brjsnuIaNsGPQqvqLaOSh3RlQrcm2lCtfD8ERdZyHB2DZAUI4HyqoSdS4eZjMDTE30v/3rCiLES1pKAPLhHvQf0SvnZZ8B4yCWBFebZCPkF0/81cV8s/3jFs3gLS/klYm+NNxCllVtqLG6YS+oi1LoSNAalkhZS1LJlRF4We+w0="
+    - secure: "CAtKWSxik7R8LLcVIDdvXI43TR5EDjdn3mrG6h3WwTqUN/fWH/wwMZIVCKngVjkpok9o8uRJpDMGsccb/rxn0jt7rsM18BpbC9YAmJ+g7WKtnnatP1hhSuw8S0HWs6wnNhcVZkC3s6PeNTFQkz6v1O97j6UJE0Vqsu7CnvE0pGI="
+    - secure: "N9m4o7ZMgJlfjqMPcj7n711GCOv9q1GcaGEUPsVza0uotpHSVwx+tn1jfFDf3ZxdEp2wdKXa7wcwZtbK9ZmO2BEgfzfwB/28BXPT4LUbQ0exiJUG7Stfc+zY/yewTx06IMw7QXy8hLcxVT1UOsOBloa1blTwglHMXsqWHZH4Y/g="
+    - secure: "Wx2QorDqzO2norN88pWNZr1BnaDOqq2tIR+N5UtM/Gs17NkAMzx6SE/s5T8gU24bjytkcLFVS1z8KRJ3g1B4l2sAlyrlNU+s60PMbxly1+aGjqxz0zVVXQZ6KRt/ElosesLwrSjYLR7IJO4tAD08s4pCBtzY9Ev3LtRPzfd4m4U="
+    - secure: "KAPsbLL4TjTcdBsvlwAAk8ei6ObykynSxmKd7vKSd9IqCP9JBERUov3REPD4Og7iCRY7e8YtxTp3lC7+1X1QBjZBh3Mzy2q3lIecRGWrHSvsRzhZQUTDZcUu2huosqZMBe9fZ2Q3Di76TMbBZBSn5UPejyzGAu3MBcqI+QFmmi8="
+    - secure: "Kb4mxABdLL0//bRKCquAlrTRqQ4J/Nw2CgbxBJKiLXfHFt8DNmmqQV6h9ZKO7nmysJX1VgNDPc4ApBq8fYpuj23cm148GinIgrs8Gjr/XQytKY5312Yfpn2yHCKpzbtasfkIwNJSLvIYNnL0qfa2qgXpGTGpDU620IWkykPfnZ8="
+    - secure: "W0Q+CORC5FvT8wRYqtVXMstfYSInOeQGuiVR4UG3b6+WaMk+E+2HJXxA7yLxZNytz2+lGMNphUEkqWuI6ibcFiCHezxtbHPopJIx2kmnyMDtdgM9GYR0Q7wBS5+RbpLuLYi47+6yoXnljsqDHG9wyyxaOBP1iFWpI7/nreMoIsY="
+    - secure: "azPbzJ2k7DhbDzr3Aq6Ozddn/Hllr2bZm74nRX8qpQAMDTE4fJ4gGf2C9aXt+0Cdxi6m9YwwoCiOem7jZ1kveUE7nMi1Y+1UZrte1ChRVsvclfCMsSzgwq8Pl69iwUoAt0CF+F7wJ946mnxcEzxlxJkquHOGOFXi8LJjQ3Okvmg="
+    - secure: "QMCoA3ZtpA3PNfjjK+1OzQdakP7Bj7iLknPFrytfneVDhmWOSXJ8Y2c5Y/xVLlvE9CArp8R0mCpwKjfNo5VEqkkiSv2M9xWRT+mbzWn4TEVvvwUR7AUYs0wicO/gI1xlJ2jUAaUEw4b9DSuuptRcFa8L2oMoCNx4NkofS6QKRS4="
+    - secure: "bdIAb+pkVZcqs+4ZTInmDOe1jH4D2DS3UAcvJBIlH94o5J0WSHdlff3jQQI+2mZBbotQlf/kcQFdDZfUc+TeZ1F2HbcSzdWuOM5gOUyblTlwEC2oLOt+Js/ajk0S06Ri0kfdl0OO1O7faq7f6BiHJNZ3oVgjnpyMKKQTrKBdHlg="                            
+    - secure: "NApVoccxfQ2VBwKyGKHyPo6XdGGXBJxDb/CZZaOJYcsEQsaFUbx+EIuh0wlFShrT7d3firfPYi7blieY7pQY7BV0onqKqmRfaO1Sv78s54vmg05+jqJyTc/BM1+ccEpGEzHNBBFW359Lb5F9bpXzIllFgCHbL5biLbG8hqfDHd0="
+    - secure: "ZYhma8y/FxG5HlNvEVDy8bL6gt1WZYS0YDkDDY2T2TJYh+w92W/O7LnRwf1MwX/I67e1/FiKxT/HqBCfb6Vk1wXY8Iom0+VAlN+jgSOlslN7pp123HYhQWgpPwVLbtJDORyT/MToUuHkZaEUbjs92M9nocHjyuDUqow2cH27KsA="
+    - secure: "UYEnP9u/Rf2t4eaYWiykaQgTXjQMn8jRaDIusZBVU8Wt6VQZ8uMmUWHhgP0sKmk1vCG8C+L3KC6p0+7uR0ROh4Zfk1GcwFpgkNnz7rAuQc0HG/JdYeCRnHQb70KY5coPn/tS1KAZpDUTUg3s4ruuDWi1gimdD+et8J7zI5ioP1c="                            
+    - secure: "RX3O8flhKNQsNUWmHpBg+oDpxD3Pf5aP5YBIP3rEaX8wyj0MJo0ZIy8T8h6TSExItfCny94FYtLu1yHzUX/e/0OnA+o/U3reOtY1NDHe+yLpo8O9nNRE/kLHo9hIVvPNf0pwChId+h4EBrzWw2EnUbFvIOomn/w0y4CDNX9hLo0="                            
+    - secure: "O4h9QFGAsXw4w7ysMLCSZCnoRmgGe4BHsxBdM2ww3rNQIdJKleh32ofZIvjsQi30LLXhQ4WHIw8Tgubx5nHI9Rc6yH7qNoAsFwXaIH3vyzzZj3hVK7feE8z8J495lhaT7k1Qb66cgsGGwb9anmhEsJW/lXy4tPhGWJsN19uscj8="                            
+    - secure: "WZCR8bJEZ3r9iTD5xf0J6PsRJF8t/D41OdgUNsViH2xs/JqxKpLsUagpakRE/imSXlDUw8FY+Fhr/qvc+K28mpjtl4r/HJzHcKqJqiIPT4ZyDq/hBXs2D64cXu/1qTPO2en1dHm178dLAr5ovESerHlwcGNYQxZ59Fi15rDYrTI="                            
+    - secure: "X4E9QbdwX0ga4dCky/7C5pecliBxDeNUOw9aDv7/oB5pF7qRR+Z967D2neO+fghvoIE/y0bNCKzmjKrtCWURHI8aC2DDVLr+QkORaH+jGw385xQT+GgsSiB2vjnxZaBY7B419E4SO2ewfhMRuxxH/d5Uf8+vMTkgg6ZxSBlulSw="
+before_install:
+  - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
+  - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
+  - chmod 600 ~/.ssh/id_rsa
+  - echo -e "Host 162.243.77.171\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - eval "$(ssh-agent)"
+  - ssh-add
 before_script:
   - psql -c 'CREATE USER root with SUPERUSER;' -U postgres
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
   - psql -d uk_postcodes_test -c 'CREATE SCHEMA postgis; CREATE EXTENSION postgis WITH SCHEMA postgis;' -U postgres
   - bundle exec rake db:migrate
 after_success:
-  - "[ \"$TRAVIS_BRANCH\" == \"master\" ] && cap production deploy"
+  - "[ \"$TRAVIS_BRANCH\" == \"master\" ] && bundle exec cap production deploy"
