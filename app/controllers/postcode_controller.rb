@@ -74,7 +74,7 @@ class PostcodeController < ApplicationController
     
     params[:format] ||= "html"
     
-    postcode = Postcode.where("ST_Distance(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})') < 10").first
+    postcode = Postcode.where("ST_DWithin(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})', 10)").first
     p = postcode.postcode.gsub(" ", "")
     redirect_to postcode_url(p, format: params[:format]), status: "303"
   end
