@@ -68,6 +68,7 @@ class PostcodeController < ApplicationController
   def reverse
     if params[:latlng]
       latlng = params[:latlng].split(",")
+      params[:format] = params[:latlng].split(".").last
       params[:lat] = latlng[0]
       params[:lng] = latlng[1]
     end

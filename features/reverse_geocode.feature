@@ -8,3 +8,7 @@ Feature: Reverse geocode
     Scenario: Get nearest postcode to latitude and longitude
       Given I access the latitude and longitude page for "57.10147801540051,-2.2428351220462"
       Then I should be redirected to "AB1 0AA"
+      
+    Scenario: Preserve formatting
+      Given I request the latitude and longitude page for "57.10147801540051,-2.2428351220462" in xml format
+      Then I should be redirected to "AB1 0AA" in xml format
