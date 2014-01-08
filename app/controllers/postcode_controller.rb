@@ -43,12 +43,24 @@ class PostcodeController < ApplicationController
   end
   
   def nearest
-    p = UKPostcode.new(params[:postcode])
-    @postcode = Postcode.where(:postcode => p.norm).first
+    if params[:postcode]
+      p = UKPostcode.new(params[:postcode])
+      postcode = Postcode.where(:postcode => p.norm).first
+      params[:lat] = postcode.lat
+      params[:lng] = postcode.lng
+      @postcode = postcode.postcode
+    else
+      @postcode = nil
+    end
+    
+    @lat = params[:lat].to_f
+    @lng = params[:lng].to_f
+    
+    params[:miles] ||= params[:distance]
         
     distance = params[:miles].to_f * 1609.344
         
-    @postcodes = Postcode.where("ST_Distance(latlng, 'POINT(#{@postcode.lat} #{@postcode.lng})') < #{distance}")    
+    @postcodes = Postcode.where("ST_Distance(latlng, 'POINT(#{@lat} #{@lng})') < #{distance}")    
         
     respond_to do |format|
       format.html

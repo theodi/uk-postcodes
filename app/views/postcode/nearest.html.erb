@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-12">
-    <h1>Postcodes within <%= params[:miles] %> miles of <%= @postcode.postcode %></h1>
+    <h1>Postcodes within <%= params[:miles] %> miles of <%= @postcode || "#{@lat}, #{@lng}" %></h1>
 
     <ul>
       <% @postcodes.each do |postcode| %>

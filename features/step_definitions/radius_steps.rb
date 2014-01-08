@@ -7,6 +7,10 @@ Given(/^there are the following postcodes:$/) do |table|
   end
 end
 
+Given(/^I make a request for postcodes within (\d+) mile of (\d+\.\d+),(\-+\d+\.\d+)$/) do |miles, lat, lng|
+  visit("/postcode/nearest?miles=#{miles}&lat=#{lat}&lng=#{lng}")
+end
+
 Given(/^I make a request for postcodes within (\d+) mile of "(.*?)"$/) do |miles, postcode|
   #UKPostcode.should_receive(:new).and_return(postcode)
   UKPostcode.any_instance.stub(:norm).and_return(postcode)
@@ -21,4 +25,8 @@ Then(/^I should see the following postcodes:$/) do |table|
   table.raw.each do |postcode|
     expect(page).to have_content postcode[0]
   end
+end
+
+Given(/^I make a request to "(.*?)"$/) do |url|
+  visit(url)
 end
