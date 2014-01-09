@@ -21,3 +21,5 @@
 /lib/data/county_electoral_division_region.*
 
 /coverage/
+
+/.env
