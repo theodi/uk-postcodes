@@ -13,6 +13,7 @@ gem 'foreman'
 gem 'capistrano', :require => false
 gem 'capistrano-rails', :require => false
 gem 'rvm1-capistrano3', :require => false
+gem 'dotenv-rails'
 
 gem 'sqlite3'
 gem 'osgb'

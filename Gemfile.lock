@@ -100,6 +100,8 @@ GEM
     diff-lcs (1.2.5)
     docile (1.1.0)
     dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     ebnf (0.3.1)
       rdf
       sxp
@@ -320,6 +322,7 @@ DEPENDENCIES
   cucumber-rails
   database_cleaner
   dbf
+  dotenv-rails
   foreman
   geodesic
   georuby
