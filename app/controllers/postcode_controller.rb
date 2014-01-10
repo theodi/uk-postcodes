@@ -53,21 +53,21 @@ class PostcodeController < ApplicationController
       params[:lng] = postcode.lng
       @postcode = postcode.postcode
     else
+      if params[:lat].blank? || params[:lng].blank?
+        render_error(422, "You must specify a latitude and longitude") and return
+      end
+      
       @postcode = nil
-    end
-    
-    if params[:lat].blank? || params[:lng].blank?
-      render_error(422, "You must specify a latitude and longitude") and return
-    end
-    
-    if params[:distance].blank?
-      render_error(422, "You must specify a distance") and return
     end
     
     @lat = params[:lat].to_f
     @lng = params[:lng].to_f
     
     params[:miles] ||= params[:distance]
+    
+    if params[:miles].blank?
+      render_error(422, "You must specify a distance") and return
+    end
         
     distance = params[:miles].to_f * 1609.344
         
@@ -104,15 +104,17 @@ class PostcodeController < ApplicationController
     
     params[:format] ||= "html"
     
-    postcode = Postcode.where("ST_DWithin(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})', 1609.344)")
+    postcodes = Postcode.where("ST_DWithin(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})', 1609.344)")
                               .order("ST_Distance(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})')")
-                              .first
-                              
-    p = postcode.postcode.gsub(" ", "")
-    
-    render_error(404, "No postcode found for #{params[:lat]},#{params[:lng]}") and return if postcode.count == 0
-    
-    redirect_to postcode_url(p, format: params[:format]), status: "303"
+                                  
+    if postcodes.count == 0
+      render_error(404, "No postcode found for #{params[:lat]},#{params[:lng]}") and return if postcode.nil?
+      return
+    else
+      postcode = postcodes.first
+      p = postcode.postcode.gsub(" ", "")
+      redirect_to postcode_url(p, format: params[:format]), status: "303"
+    end
   end
   
   def search
