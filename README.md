@@ -1,3 +1,7 @@
+[![Build Status](https://travis-ci.org/theodi/uk-postcodes.png)](https://travis-ci.org/theodi/uk-postcodes)
+[![Coverage Status](https://coveralls.io/repos/theodi/uk-postcodes/badge.png)](https://coveralls.io/r/theodi/uk-postcodes)
+[![License](http://img.shields.io/license/mit.png?color=green)](http://theodi.mit-license.org/)
+
 # UK Postcodes
 
 This is the next generation version of [http://www.uk-postcodes.com](http://www.uk-postcodes.com). The functionality is largely unchanged, but improvements include:

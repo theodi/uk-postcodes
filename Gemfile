@@ -58,6 +58,7 @@ group :test do
   gem 'simplecov'
   gem 'pry'
   gem 'database_cleaner'
+  gem 'coveralls'
 end
 
 gem 'jquery-rails'

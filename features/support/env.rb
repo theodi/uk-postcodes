@@ -5,6 +5,10 @@
 # files.
 require 'simplecov'
 SimpleCov.start 'rails'
+require 'coveralls'
+
+Coveralls.wear!
+
 SimpleCov.coverage_dir 'coverage/cucumber'
 
 require 'cucumber/rails'
