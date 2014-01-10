@@ -8,6 +8,9 @@ UkPostcodes::Application.configure do
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
+  
+  config.log_level = :all
+  
 
   # Show full error reports and disable caching
   config.consider_all_requests_local       = true
@@ -33,5 +36,5 @@ UkPostcodes::Application.configure do
   config.assets.compress = false
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = true  
 end

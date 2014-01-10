@@ -23,13 +23,16 @@ class PostcodeController < ApplicationController
       redirect_to postcode_url(postcode, format: params[:format]), status: "301"
       return
     end
-    
+        
     p = UKPostcode.new(params[:id])
     postcode = p.norm
+    
+    render_error(404, "Postcode #{p.to_s} is not valid") and return unless p.valid?
+    
     @postcode = Postcode.where(:postcode => postcode).first
     
     if postcode == "" || @postcode.nil?
-      render_404
+      render_error(404, "Postcode #{p.to_s} cannot be found")
       return
     else    
       respond_to do |format|
@@ -51,6 +54,14 @@ class PostcodeController < ApplicationController
       @postcode = postcode.postcode
     else
       @postcode = nil
+    end
+    
+    if params[:lat].blank? || params[:lng].blank?
+      render_error(422, "You must specify a latitude and longitude") and return
+    end
+    
+    if params[:distance].blank?
+      render_error(422, "You must specify a distance") and return
     end
     
     @lat = params[:lat].to_f
@@ -87,12 +98,20 @@ class PostcodeController < ApplicationController
       params[:lng] = latlng[1]
     end
     
+    if params[:lat].blank? || params[:lng].blank?
+      render_error(422, "You must specify a latitude and longitude") and return
+    end
+    
     params[:format] ||= "html"
     
     postcode = Postcode.where("ST_DWithin(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})', 1609.344)")
                               .order("ST_Distance(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})')")
                               .first
+                              
     p = postcode.postcode.gsub(" ", "")
+    
+    render_error(404, "No postcode found for #{params[:lat]},#{params[:lng]}") and return if postcode.count == 0
+    
     redirect_to postcode_url(p, format: params[:format]), status: "303"
   end
   
