@@ -108,7 +108,7 @@ class PostcodeController < ApplicationController
                               .order("ST_Distance(latlng, 'POINT(#{params[:lat].to_f} #{params[:lng].to_f})')")
                                   
     if postcodes.count == 0
-      render_error(404, "No postcode found for #{params[:lat]},#{params[:lng]}") and return if postcode.nil?
+      render_error(404, "No postcode found for #{params[:lat]},#{params[:lng]}")
       return
     else
       postcode = postcodes.first
