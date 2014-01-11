@@ -12,3 +12,13 @@ Feature: Reverse geocode
     Scenario: Preserve formatting
       Given I request the latitude and longitude page for "57.10147801540051,-2.2428351220462" in xml format
       Then I should be redirected to "AB1 0AA" in xml format
+
+    Scenario: Missing longitude
+      Given I request the latitude and longitude page for "57.10147801540051," in json format
+      Then the response should be "422"
+      And I should see the error "You must specify a latitude and longitude"
+
+    Scenario: Out of range requests
+      Given I request the latitude and longitude page for "0,0" in json format
+      Then the response should be "404"
+      And I should see the error "No postcode found for 0,0"

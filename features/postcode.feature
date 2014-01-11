@@ -21,3 +21,11 @@ Feature: Access postcodes
   Scenario: Redirects are in place
     Given I try and access the page for "AB1 0AA" with a space
     Then I should be redirected to the canonical URL for the postcode
+
+  Scenario: Access invalid postcode
+    Given I access the page for "BCDZSD"
+    Then the response should be "404"
+
+  Scenario: Access nonexistent postcode
+    Given I access the page for "SW1A 1AA"
+    Then the response should be "404"

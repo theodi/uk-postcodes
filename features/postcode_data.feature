@@ -112,3 +112,13 @@ Feature: Accessing postcode data
           """
           AB1 0AA,57.10147801540051,-2.2428351220462,385386.0,801193.0,http://geohash.org/gfnkugnb4phb,,,S12000033,Aberdeen City,S13002484,Lower Deeside
           """
+
+        Scenario: Access invalid postcode
+          Given I access the JSON version of "BCDZSD"
+          Then the response should be "404"
+          And I should see the error "Postcode BCDZSD is not valid"
+
+        Scenario: Access nonexistent postcode
+          Given I access the JSON version of "SW1A 1AA"
+          Then the response should be "404"
+          And I should see the error "Postcode SW1A1AA cannot be found"

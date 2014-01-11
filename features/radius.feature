@@ -33,3 +33,13 @@ Feature: Postcode Radius
       | ABC 123 |
       | ABC 345 |
       | ABC 678 |
+      
+  Scenario: Missing longitude  
+    And I make a request to "/postcode/nearest.json?miles=1&lat=51.525999"
+    Then the response should be "422"
+    And I should see the error "You must specify a latitude and longitude"
+
+  Scenario: Missing longitude  
+    And I make a request to "/postcode/nearest.json?lat=51.525999&lng=-0.087761878"
+    Then the response should be "422"
+    And I should see the error "You must specify a distance"

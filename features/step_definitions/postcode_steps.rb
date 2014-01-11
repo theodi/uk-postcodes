@@ -33,3 +33,12 @@ Then(/^I should be redirected to the canonical URL for the postcode$/) do
   page.current_path.should eql "/postcode/#{postcode}.html"
 end
 
+Then(/^the response should be "(.*?)"$/) do |code|
+  page.status_code.should == code.to_i
+end
+
+Then(/^I should see the error "(.*?)"$/) do |error|
+  json = JSON.parse(page.body)
+  json['error'].should == error
+end
+

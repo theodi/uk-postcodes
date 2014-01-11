@@ -7,11 +7,11 @@ Then(/^I should be redirected to "(.*?)"$/) do |postcode|
   page.current_path.should eql "/postcode/#{postcode}.html"
 end
 
-Given(/^I request the latitude and longitude page for "(.*?)" in xml format$/) do |latlng|
-  visit ("/latlng/#{latlng}.xml")
+Given(/^I request the latitude and longitude page for "(.*?)" in (.*?) format$/) do |latlng, format|
+  visit ("/latlng/#{latlng}.#{format}")
 end
 
-Then(/^I should be redirected to "(.*?)" in xml format$/) do |postcode|
+Then(/^I should be redirected to "(.*?)" in (.*?) format$/) do |postcode, format|
   postcode.gsub!(" ", "")
-  page.current_path.should eql "/postcode/#{postcode}.xml"
+  page.current_path.should eql "/postcode/#{postcode}.#{format}"
 end
