@@ -29,8 +29,9 @@ env:
 before_install:
   - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
   - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - chmod 600 ~/.ssh/id_rsa  - gem install capistrano --no-ri --no-rdoc
+  - eval "$(ssh-agent)"
+  - ssh-add
 before_script:
   - psql -c 'CREATE USER root with SUPERUSER;' -U postgres
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
