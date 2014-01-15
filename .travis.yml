@@ -39,4 +39,4 @@ before_script:
   - psql -d uk_postcodes_test -c 'CREATE SCHEMA postgis; CREATE EXTENSION postgis WITH SCHEMA postgis;' -U postgres
   - bundle exec rake db:migrate
 after_success:
-  - "[ \"$TRAVIS_BRANCH\" == \"master\" ] && bundle exec cap production deploy"
+  - "[ \"$TRAVIS_BRANCH\" == \"master\" ] && cap production deploy"
