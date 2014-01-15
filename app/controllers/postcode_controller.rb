@@ -53,10 +53,7 @@ class PostcodeController < ApplicationController
       params[:lng] = postcode.lng
       @postcode = postcode.postcode
     else
-      if params[:lat].blank? || params[:lng].blank?
-        render_error(422, "You must specify a latitude and longitude") and return
-      end
-      
+      render_error(422, "You must specify a latitude and longitude") and return if params[:lat].blank? || params[:lng].blank?
       @postcode = nil
     end
     
@@ -65,9 +62,8 @@ class PostcodeController < ApplicationController
     
     params[:miles] ||= params[:distance]
     
-    if params[:miles].blank?
-      render_error(422, "You must specify a distance") and return
-    end
+    render_error(422, "You must specify a distance") and return if params[:miles].blank?    
+    render_error(422, "The maximum radius is 5 miles") and return if params[:miles].to_i > 5
         
     distance = params[:miles].to_f * 1609.344
         

@@ -7,11 +7,11 @@ class ApplicationController < ActionController::Base
     @code = code
     @error = reason
     respond_to do |format|
-      format.html { render :file => "#{Rails.root}/public/#{code}", :layout => false, :status => code }
+      format.html { render :file => "application/error", :layout => false, :status => code }
       format.json { render :template => "application/error", :status => code }
       format.xml { render :template => "application/error", :status => code }
-      format.rdf { render :file => "#{Rails.root}/public/404", :layout => false, :status => code }
-      format.csv { render :file => "#{Rails.root}/public/404", :layout => false, :status => code }
+      format.rdf { render :file => "#{Rails.root}/public/#{code}", :layout => false, :status => code }
+      format.csv { render :file => "#{Rails.root}/public/#{code}", :layout => false, :status => code }
     end
   end
   

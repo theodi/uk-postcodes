@@ -38,7 +38,6 @@ Then(/^the response should be "(.*?)"$/) do |code|
 end
 
 Then(/^I should see the error "(.*?)"$/) do |error|
-  json = JSON.parse(page.body)
-  json['error'].should == error
+  page.should have_content error
 end
 

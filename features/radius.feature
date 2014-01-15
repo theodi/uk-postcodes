@@ -43,3 +43,9 @@ Feature: Postcode Radius
     And I make a request to "/postcode/nearest.json?lat=51.525999&lng=-0.087761878"
     Then the response should be "422"
     And I should see the error "You must specify a distance"
+    
+  Scenario: Radius is more than the permitted maximum
+    And I make a request for postcodes within 10 mile of "ABC 123"
+    Then the response should be "422"
+    And I should see the error "The maximum radius is 5 miles"
+
