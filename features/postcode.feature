@@ -29,3 +29,8 @@ Feature: Access postcodes
   Scenario: Access nonexistent postcode
     Given I access the page for "SW1A 1AA"
     Then the response should be "404"
+
+  Scenario: Invalid postcode on redirect  
+    Given I make a request to "/postcode/search?q=ABC%20123"
+    Then the response should be "404"
+    And I should see the error "Postcode ABC 123 is not valid"

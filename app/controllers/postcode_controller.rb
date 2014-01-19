@@ -115,7 +115,10 @@ class PostcodeController < ApplicationController
   
   def search
     p = UKPostcode.new(params[:q])
-    postcode = p.norm.gsub(" ", "")
+    
+    render_error(404, "Postcode #{p.to_s} is not valid") and return unless p.valid?
+    
+    postcode = p.norm.gsub(" ", "")    
     redirect_to postcode_url(postcode, format: params[:format]), status: "303"
   end
 
