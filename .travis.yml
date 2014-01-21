@@ -27,7 +27,7 @@ env:
     - secure: "Fie+MZjigrA8xMm5N+m6u8Lf6xb3U1oK0ee0ivEExpsBcmviI+SMYjwcjNtXIpi2f0P6L4rjJMJswWrFp4/BCDNKZDZZqhjB+jJ5q1mCA2rqeI/5Uu4RJB3tuFg05U6GNJbHDKiwvCO8OM6Pj/CUU/J3so5cjRBFaAOIKpGDarc="
     - secure: "DdrfRF2kyMT3jFI3+h/e6kGrF0cu+fibGE/nNCRfLepFndloVpvy+pG8VALdyMFx4DjTlWvacq7juzeVjib2wa0fOVPUTaGmjr3m+LEuRNdi537v9oV8d929ksLtZuCvGngY2PZG4sX6A+UuhuOfs6M0ZN/VaNbNXt9nysTX/To="
 before_install:
-  - echo -n $id_rsa_{00..30} >> ~/.ssh/id_rsa_base64
+  - echo -n $id_rsa_{00..30} | tr -d ' ' >> ~/.ssh/id_rsa_base64
   - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
   - chmod 600 ~/.ssh/id_rsa
   - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
