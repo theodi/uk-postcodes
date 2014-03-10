@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 #ruby=ruby-2.0.0
 #ruby-gemset=uk-postcodes
 
-gem 'rails', '3.2.14'
+gem 'rails', '~> 3.2.14'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
