@@ -64,8 +64,9 @@ class PostcodeController < ApplicationController
     render_error(422, "The maximum radius is 5 miles") and return if params[:miles].to_i > 5
         
     distance = params[:miles].to_f * 1609.344
-        
-    @postcodes = Postcode.where("ST_Distance(latlng, 'POINT(#{@lat} #{@lng})') < #{distance}")    
+    
+    @postcodes = Postcode.where("ST_DWithin(latlng, ST_Geomfromtext('POINT(#{@lat} #{@lng})'), #{distance})").
+                                order("ST_Distance(latlng, ST_Geomfromtext('POINT(#{@lat} #{@lng})'))")
         
     respond_to do |format|
       format.html
