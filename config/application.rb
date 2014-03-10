@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require "rails/all" # Uncomment this line for Rails 3.1+
+require 'rack/jsonp'
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -66,6 +67,8 @@ module UkPostcodes
         resource '/nearest/*', :headers => :any, :methods => [:get, :options]
       end
     end
+    
+    config.middleware.use Rack::JSONP
     
   end
 end
