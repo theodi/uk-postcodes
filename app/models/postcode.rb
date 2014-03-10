@@ -22,9 +22,9 @@ class Postcode < ActiveRecord::Base
     self.eastingnorthing.y
   end
   
-  def distance_from(latlng)
-    d = Geodesic::dist_haversine(self.lat, self.lng, latlng[0], latlng[1])
-    d.round(4)
+  def distance_from(lat, lng)
+    d = Geodesic::dist_haversine(self.lat, self.lng, lat, lng)
+    (d * 0.6214).round(4)
   end
   
   def admin_areas

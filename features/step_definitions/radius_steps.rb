@@ -11,6 +11,10 @@ Given(/^I make a request for postcodes within (\d+) mile of (\d+\.\d+),(\-+\d+\.
   visit("/postcode/nearest?miles=#{miles}&lat=#{lat}&lng=#{lng}")
 end
 
+Given(/^I make a request for the JSON version of postcodes within (\d+) mile of (\d+\.\d+),(\-+\d+\.\d+)$/) do |miles, lat, lng|
+  visit("/postcode/nearest.json?miles=#{miles}&lat=#{lat}&lng=#{lng}")
+end
+
 Given(/^I make a request for postcodes within (\d+) mile of "(.*?)"$/) do |miles, postcode|
   #UKPostcode.should_receive(:new).and_return(postcode)
   UKPostcode.any_instance.stub(:norm).and_return(postcode)
