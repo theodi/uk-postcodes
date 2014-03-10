@@ -10,7 +10,7 @@ Then(/^I should see the following details:$/) do |table|
   end
 end
 
-Given(/^I access the (.*?) version of "(.*?)"$/) do |format, postcode|
+Given(/^I access the (.*?) version of "([^"]*)"$/) do |format, postcode|
   postcode.gsub!(" ", "")
   visit ("/postcode/#{postcode}.#{format.downcase}")
 end
@@ -25,6 +25,11 @@ end
 Then(/^I should see the correct callback$/) do
   page.body.should match /#{@callback}/
 end
+
+Then(/^I should be redirected to the JSONP version of the data$/) do
+  page.current_url.should == "http://www.example.com/postcode/#{@postcode}.jsonp?callback=#{@callback}"
+end
+
 Then(/^I should see the following json:$/) do |string|
   JSON.parse(page.body).should eql(JSON.parse(string.squish))
 end

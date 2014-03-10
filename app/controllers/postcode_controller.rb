@@ -16,6 +16,11 @@ class PostcodeController < ApplicationController
       redirect_to postcode_url(postcode, format: params[:format]), status: "301"
       return
     end
+    
+    if params[:callback] && params[:format] == 'json' && !request.original_fullpath.match(/jsonp/)
+      params[:format] = "jsonp"
+      redirect_to postcode_url(params[:id], params), status: "301" and return 
+    end
         
     p = UKPostcode.new(params[:id])
     postcode = p.norm
