@@ -4,13 +4,6 @@ class PostcodeController < ApplicationController
   caches_page :index, :show
   
   before_filter(:only => [:show, :nearest]) { alternate_formats [:json, :xml, :rdf, :csv] }
-  
-  after_filter do |controller| 
-      if controller.params[:callback] && controller.params[:format].to_s == 'json'
-        controller.response['Content-Type'] = 'application/javascript'
-        controller.response.body = "%s(%s)" % [controller.params[:callback], controller.response.body]
-      end
-    end
 
   def index
     
