@@ -15,6 +15,16 @@ Given(/^I access the (.*?) version of "(.*?)"$/) do |format, postcode|
   visit ("/postcode/#{postcode}.#{format.downcase}")
 end
 
+Given(/^I access the (.*?) version of "(.*?)" with the callback "(.*?)"$/) do |format, postcode, callback|
+  @callback = callback
+  @postcode = postcode
+  postcode.gsub!(" ", "")
+  visit ("/postcode/#{postcode}.#{format.downcase}?callback=#{@callback}")
+end
+
+Then(/^I should see the correct callback$/) do
+  page.body.should match /#{@callback}/
+end
 Then(/^I should see the following json:$/) do |string|
   JSON.parse(page.body).should eql(JSON.parse(string.squish))
 end
