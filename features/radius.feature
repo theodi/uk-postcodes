@@ -25,6 +25,35 @@ Feature: Postcode Radius
       | ABC 123 |
       | ABC 345 |
       | ABC 678 |
+
+  Scenario: Getting JSON version of radius from latlng
+    And I make a request for the JSON version of postcodes within 1 mile of 51.525994048543595,-0.08776187896728516
+    Then I should see the following json:
+    """
+    [
+      {
+        "postcode": "ABC 123",
+        "lat": 51.525994048543595,
+        "lng": -0.08776187896728516,
+        "distance": 0.0,
+        "uri": "http://www.example.com/postcode/ABC123"
+      },
+      {
+        "postcode": "ABC 345",
+        "lat": 51.52156160130253,
+        "lng": -0.08334159851074219,
+        "distance": 0.3604,
+        "uri": "http://www.example.com/postcode/ABC345"
+      },
+      {
+        "postcode": "ABC 678",
+        "lat": 51.52967852566192,
+        "lng": -0.09698867797851562,
+        "distance": 0.4713,
+        "uri": "http://www.example.com/postcode/ABC678"
+      }
+    ]
+    """
   
   Scenario: Legacy redirects
     And I make a request to "/distance.php?lat=51.525994048543595&lng=-0.08776187896728516&distance=1"
