@@ -37,6 +37,7 @@ gem 'twitter-bootstrap-rails', :github => 'seyhunak/twitter-bootstrap-rails', :b
 gem 'leaflet-rails'
 gem 'alternate_rails', :github => 'theodi/alternate-rails'
 gem 'rack-cors'
+gem 'rack-jsonp-middleware'
 
 gem 'pry-remote'
 

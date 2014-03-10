@@ -4,13 +4,6 @@ class PostcodeController < ApplicationController
   caches_page :index, :show
   
   before_filter(:only => [:show, :nearest]) { alternate_formats [:json, :xml, :rdf, :csv] }
-  
-  after_filter do |controller| 
-      if controller.params[:callback] && controller.params[:format].to_s == 'json'
-        controller.response['Content-Type'] = 'application/javascript'
-        controller.response.body = "%s(%s)" % [controller.params[:callback], controller.response.body]
-      end
-    end
 
   def index
     
@@ -22,6 +15,11 @@ class PostcodeController < ApplicationController
       params[:format] ||= "html"
       redirect_to postcode_url(postcode, format: params[:format]), status: "301"
       return
+    end
+    
+    if params[:callback] && params[:format] == 'json' && !request.original_fullpath.match(/jsonp/)
+      params[:format] = "jsonp"
+      redirect_to postcode_url(params[:id], params), status: "301" and return 
     end
         
     p = UKPostcode.new(params[:id])

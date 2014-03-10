@@ -37,7 +37,19 @@ Feature: Accessing postcode data
         }
       }
       """
-  
+    
+    @enable_caching
+    Scenario: JSONP works correctly with caching
+      Given I access the JSONP version of "AB1 0AA" with the callback "J50Npi.success"
+      Then I should see the correct callback
+      And I access the JSONP version of "AB1 0AA" with the callback "J50Npi.success2"
+      Then I should see the correct callback
+    
+    Scenario: JSON requests with callbacks get redirected to JSONP
+      Given I access the JSON version of "AB1 0AA" with the callback "J50Npi.success"
+      Then I should be redirected to the JSONP version of the data
+      And I should see the correct callback
+       
     Scenario: Access XML version
       Given I access the XML version of "AB1 0AA"
       Then I should see the following xml:

@@ -32,3 +32,11 @@ After do
   DatabaseCleaner.clean
 end
 
+Before '@enable_caching' do
+  ActionController::Base.perform_caching = true
+end
+
+After '@enable_caching' do
+  ActionController::Base.perform_caching = false
+end
+
