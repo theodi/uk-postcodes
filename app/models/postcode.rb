@@ -4,7 +4,7 @@ class Postcode < ActiveRecord::Base
 
   set_rgeo_factory_for_column(:latlng, RGeo::Geographic.spherical_factory(:srid => 4326))
   
-  ADMIN_AREAS = [:council, :county, :ward, :constituency]
+  ADMIN_AREAS = [:council, :county, :ward, :constituency, :parish, :electoral_district]
   
   def lat
     self.latlng.x
@@ -30,11 +30,9 @@ class Postcode < ActiveRecord::Base
   def admin_areas
     areas = {}
     ADMIN_AREAS.each do |area|
-      unless self.send(area).nil? || self.send(area).include?("99999999")
-        areas[area] = self.send("#{area}_details")
-      end
+      areas[area] = self.send("#{area}_details")
     end
-    areas
+    areas.delete_if {|k,v| v.blank?}
   end
   
   def geohash
@@ -46,19 +44,34 @@ class Postcode < ActiveRecord::Base
     val = method_name.to_s.match(/(.+)_details/)
     unless val.nil?
       c = Code.where(:gss => self.send(val[1])).first
-      unless c.nil?
-        {
-          :name => c.name,
-          :gss => c.gss,
-          :ons_uri => "http://statistics.data.gov.uk/id/statistical-geography/#{c.gss}",
-          :os_uri => "http://data.ordnancesurvey.co.uk/id/#{c.os}",
-          :kind => c.kind
-        }
-      else
-        {}
-      end 
+      area_details(c)
     else
       super
+    end
+  end
+  
+  def electoral_district_details
+    b = Boundary.where("kind = 'CountyElectoralDivision' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
+    area_details(b)
+  end
+
+  def parish_details
+    b = Boundary.where("kind = 'CivilParish' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
+    area_details(b)
+  end
+  
+  def area_details(area)
+    unless area.nil?
+      {
+        :name => area.name,
+        :gss => area.gss,
+        :os => area.os,
+        :ons_uri => "http://statistics.data.gov.uk/id/statistical-geography/#{area.gss}",
+        :os_uri => "http://data.ordnancesurvey.co.uk/id/#{area.os}",
+        :kind => area.kind
+      }
+    else
+      {}
     end
   end
   

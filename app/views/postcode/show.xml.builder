@@ -11,10 +11,15 @@ xml.result do
     @postcode.admin_areas.each do |title, area|
       xml.tag!(title) do
         xml.title area[:name]
-        unless @postcode.country == "N92000002"
-          xml.uri area[:ons_uri]
+        unless area[:gss] == "999999999"
+          unless @postcode.country == "N92000002"
+            xml.uri area[:ons_uri]
+          end
+          xml.code area[:gss]
+        else
+          xml.uri area[:os_uri]
+          xml.code area[:os]
         end
-        xml.code area[:gss]
       end
     end
   end

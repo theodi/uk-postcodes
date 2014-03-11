@@ -11,16 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131119090939) do
+ActiveRecord::Schema.define(:version => 20140311103610) do
 
   create_table "boundaries", :force => true do |t|
-    t.string  "code"
+    t.string  "os"
     t.string  "name"
-    t.string  "type"
-    t.spatial "shape", :limit => {:srid=>0, :type=>"polygon"}
+    t.string  "kind"
+    t.spatial "shape", :limit => {:srid=>0, :type=>"geometry"}
+    t.string  "gss"
   end
 
-  add_index "boundaries", ["code"], :name => "index_boundaries_on_code", :unique => true
+  add_index "boundaries", ["os"], :name => "index_boundaries_on_code", :unique => true
 
   create_table "codes", :force => true do |t|
     t.string "name"

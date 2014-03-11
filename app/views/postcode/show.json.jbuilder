@@ -10,10 +10,15 @@ json.administrative do
   @postcode.admin_areas.each do |title, area|
     json.set!(title) do
       json.title area[:name]
-      unless @postcode.country == "N92000002"
-        json.uri area[:ons_uri]
+      unless area[:gss] == "999999999"
+        unless @postcode.country == "N92000002"
+          json.uri area[:ons_uri]
+        end
+        json.code area[:gss]
+      else
+        json.uri area[:os_uri]
+        json.code area[:os]
       end
-      json.code area[:gss]
     end
   end
 end
