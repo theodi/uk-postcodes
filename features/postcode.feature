@@ -18,6 +18,12 @@ Feature: Access postcodes
       | ward             | Lower Deeside  |
       | constituency     | Aberdeen South |
       
+  Scenario: Access HTML version with parish and county
+    Given I access the page for "WS14 9SQ"
+    Then I should see the following details:
+      | parish           | Lichfield CP |
+      | county           | Staffordshire |
+      
   Scenario: Redirects are in place
     Given I try and access the page for "AB1 0AA" with a space
     Then I should be redirected to the canonical URL for the postcode
