@@ -74,6 +74,11 @@ Feature: Accessing postcode data
             "title": "Lichfield CP",
             "uri": "http://statistics.data.gov.uk/id/statistical-geography/E04008932",
             "code": "E04008932"
+          },
+          "electoral_district": {
+            "title": "Lichfield City South", 
+            "uri": "http://data.ordnancesurvey.co.uk/id/7000000000042775", 
+            "code": "7000000000042775"
           }
         }
       }
@@ -161,6 +166,11 @@ Feature: Accessing postcode data
             <uri>http://statistics.data.gov.uk/id/statistical-geography/E04008932</uri>
             <code>E04008932</code>
           </parish>
+          <electoral_district> 
+            <title>Lichfield City South</title>     
+            <uri>http://data.ordnancesurvey.co.uk/id/7000000000042775</uri> 
+            <code>7000000000042775</code> 
+          </electoral_district>
         </administrative>
       </result>
       """
@@ -216,10 +226,14 @@ Feature: Accessing postcode data
           <rdf:Description rdf:about='http://data.ordnancesurvey.co.uk/id/7000000000024610'>
             <rdfs:label>Lichfield</rdfs:label>
           </rdf:Description>
+          <rdf:Description rdf:about='http://data.ordnancesurvey.co.uk/id/7000000000042775'> 
+            <rdfs:label>Lichfield City South</rdfs:label> 
+          </rdf:Description>
           <ns0:PostcodeUnit rdf:about='http://uk-postcodes.com/postcode/WS149SQ'>
             <rdfs:label>WS14 9SQ</rdfs:label>
             <osadmingeo:CivilParish rdf:resource='http://data.ordnancesurvey.co.uk/id/7000000000014792' />
             <osadmingeo:County rdf:resource='http://data.ordnancesurvey.co.uk/id/7000000000015052' />
+            <osadmingeo:CountyElectoralDivision rdf:resource='http://data.ordnancesurvey.co.uk/id/7000000000042775' />
             <osadmingeo:District rdf:resource='http://data.ordnancesurvey.co.uk/id/7000000000014797' />
             <osadmingeo:DistrictWard rdf:resource='http://data.ordnancesurvey.co.uk/id/7000000000014814' />
             <osadmingeo:WestminsterConstituency rdf:resource='http://data.ordnancesurvey.co.uk/id/7000000000024610' />

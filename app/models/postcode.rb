@@ -4,7 +4,7 @@ class Postcode < ActiveRecord::Base
 
   set_rgeo_factory_for_column(:latlng, RGeo::Geographic.spherical_factory(:srid => 4326))
   
-  ADMIN_AREAS = [:council, :county, :ward, :constituency, :parish]
+  ADMIN_AREAS = [:council, :county, :ward, :constituency, :parish, :electoral_district]
   
   def lat
     self.latlng.x
@@ -50,6 +50,11 @@ class Postcode < ActiveRecord::Base
     end
   end
   
+  def electoral_district_details
+    b = Boundary.where("kind = 'CountyElectoralDivision' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
+    area_details(b)
+  end
+
   def parish_details
     b = Boundary.where("kind = 'CivilParish' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
     area_details(b)
@@ -60,6 +65,7 @@ class Postcode < ActiveRecord::Base
       {
         :name => area.name,
         :gss => area.gss,
+        :os => area.os,
         :ons_uri => "http://statistics.data.gov.uk/id/statistical-geography/#{area.gss}",
         :os_uri => "http://data.ordnancesurvey.co.uk/id/#{area.os}",
         :kind => area.kind
