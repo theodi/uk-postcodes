@@ -70,24 +70,28 @@ class Import
   end
   
   def self.parishes
-    file = Rails.root.join('lib', 'parish_region').to_s
-    boundaries(file, "parish")
+    file = Rails.root.join('lib', 'data', 'parish_region').to_s
+    boundaries(file, "CivilParish")
   end
   
   def self.boundaries(file, type)
     GeoRuby::Shp4r::ShpFile.open(file) do |shp|
       shp.each do |shape|
         name = shape.data['NAME']
-        code = shape.data['UNIT_ID']
-        geom = shape.geometry.to_coordinates.first.first
+        code = "7" + shape.data['UNIT_ID'].to_s.rjust(15, '0')
+        gss = shape.data['CODE']
+        geom = shape.geometry.as_wkt
         
-        puts name
-                
-        Boundary.create(:name  => name,
-                        :code  => code,
-                        :type  => type,
-                        :shape => geom
-                        )
+        unless code == "7000000000000000" || name.match(/(DET)/)             
+          
+          Boundary.create(:name  => name,
+                          :os    => code,
+                          :gss   => gss,
+                          :kind  => type,
+                          :shape => geom
+                          )
+                          
+        end
       end
     end
   end
