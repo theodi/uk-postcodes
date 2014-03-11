@@ -3,6 +3,8 @@ require 'breasal'
 require 'uk_postcode'
 require 'geo_ruby/shp'
 require 'zip/filesystem'
+require 'net/http'
+require 'open-uri'
 
 class Import
   
@@ -64,25 +66,50 @@ class Import
     path = Rails.root.join('lib', 'data', 'postcodes.zip')
   end
   
-  def self.electoraldistricts
-    file = Rails.root.join('lib', 'county_electoral_division_region').to_s
-    boundaries(file, "electoraldistrict")
-  end
-  
   def self.parishes
-    file = Rails.root.join('lib', 'data', 'parish_region').to_s
-    boundaries(file, "CivilParish")
+    file = download_boundaries
+    unzip_boundaries(file, 'parish_region')
+    import_boundaries('parish_region', 'CivilParish')
   end
   
-  def self.boundaries(file, type)
+  def self.electoraldistricts
+    file = download_boundaries
+    unzip_boundaries(file, 'county_electoral_division_region')
+    import_boundaries('county_electoral_division_region', 'CountyElectoralDivision')
+  end
+  
+  def self.download_boundaries
+    url = "http://parlvid.mysociety.org/os/bdline_gb-2013-10.zip"
+    file = Rails.root.join('lib', 'data', 'boundaries.zip')
+    unless File.exist?(file)
+      open(file, 'wb') do |file|
+        file << open(url).read
+      end
+    end
+    file
+  end
+  
+  def self.unzip_boundaries(file, shp)
+    zip = Zip::File.open(file)
+    destination = Rails.root.join('lib', 'data', shp)
+    FileUtils.mkdir_p(destination) unless File.exist?(destination)
+    ['dbf', 'prj', 'shp', 'shx'].each do |ext|
+      filename = "#{shp}.#{ext}"
+      f = destination.join(filename)
+      zip.extract("Data/#{filename}", f) unless File.exist?(f)
+    end
+  end
+  
+  def self.import_boundaries(filename, type)
+    file = Rails.root.join('lib', 'data', filename, filename).to_s
     GeoRuby::Shp4r::ShpFile.open(file) do |shp|
       shp.each do |shape|
-        name = shape.data['NAME']
+        name = shape.data['NAME'][0..-4]
         code = "7" + shape.data['UNIT_ID'].to_s.rjust(15, '0')
         gss = shape.data['CODE']
         geom = shape.geometry.as_wkt
         
-        unless code == "7000000000000000" || name.match(/(DET)/)             
+        unless code == "7000000000000000" || shape.data['NAME'].match(/(DET)/)             
           
           Boundary.create(:name  => name,
                           :os    => code,
@@ -90,6 +117,7 @@ class Import
                           :kind  => type,
                           :shape => geom
                           )
+
                           
         end
       end

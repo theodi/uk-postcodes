@@ -15,6 +15,12 @@ namespace :import do
   task :parish => :environment do
     Import.parishes
   end
+  
+  desc "Import boundaries"
+  task :boundaries => :environment do
+    Import.electoraldistricts
+    Import.parishes
+  end
 
   desc "Import Codes"
   task :code => :environment do
@@ -27,6 +33,8 @@ namespace :import do
     Import.postcodes
     Import.codes
     Import.ni_codes
+    Import.electoral_district
+    Import.parishes
   end
 
 end
