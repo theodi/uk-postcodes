@@ -80,6 +80,10 @@ input#num, input#miles {
 	margin-bottom: 20px;
 }
 
+.dl-horizontal dd {
+	margin-bottom: 10px;
+}
+
 dt {
 	text-align: left !important;
 	margin-bottom: 10px;
