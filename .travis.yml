@@ -14,6 +14,6 @@ before_script:
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
   - psql -d uk_postcodes_test -c 'CREATE SCHEMA postgis; CREATE EXTENSION postgis WITH SCHEMA postgis;' -U postgres
   - bundle exec rake db:migrate
-  after_success:
-    - "openssl aes-256-cbc -k '$DEPLOY_KEY' -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa"
-    - "[[ $TRAVIS_BRANCH = 'master' ]] && bundle exec cap production deploy"
+after_success:
+  - "openssl aes-256-cbc -k '$DEPLOY_KEY' -in config/deploy_id_rsa_enc_travis -d -a -out config/deploy_id_rsa"
+  - "[[ $TRAVIS_BRANCH = 'master' ]] && bundle exec cap production deploy"
