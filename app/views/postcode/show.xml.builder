@@ -12,7 +12,7 @@ xml.result do
       xml.tag!(title) do
         xml.title area[:name]
         unless area[:gss] == "999999999"
-          unless @postcode.country == "N92000002"
+          unless @postcode.ni?
             xml.uri area[:ons_uri]
           end
           xml.code area[:gss]

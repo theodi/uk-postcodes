@@ -11,7 +11,7 @@ json.administrative do
     json.set!(title) do
       json.title area[:name]
       unless area[:gss] == "999999999"
-        unless @postcode.country == "N92000002"
+        unless @postcode.ni?
           json.uri area[:ons_uri]
         end
         json.code area[:gss]
