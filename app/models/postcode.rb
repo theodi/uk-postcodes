@@ -51,13 +51,17 @@ class Postcode < ActiveRecord::Base
   end
   
   def electoral_district_details
-    b = Boundary.where("kind = 'CountyElectoralDivision' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
-    area_details(b)
+    unless ni?
+      b = Boundary.where("kind = 'CountyElectoralDivision' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
+      area_details(b)
+    end
   end
 
   def parish_details
-    b = Boundary.where("kind = 'CivilParish' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
-    area_details(b)
+    unless ni?
+      b = Boundary.where("kind = 'CivilParish' AND ST_Contains(shape, ST_Geomfromtext('POINT(#{self.easting} #{self.northing})'))").first
+      area_details(b)
+    end
   end
   
   def area_details(area)
@@ -92,6 +96,10 @@ class Postcode < ActiveRecord::Base
           ward_details[:name]
         ]
     end
+  end
+  
+  def ni?
+    country == "N92000002"
   end
   
 end

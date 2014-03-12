@@ -9,16 +9,16 @@
         <dt>Longitude</dt>
         <dd class="longitude"><%= @postcode.lng.round(6) %></dd>
         <dt>Easting</dt>
-        <dd class="easting"><%= @postcode.easting.to_i %> <%= "<em class='ing'>(Irish National Grid)</em>".html_safe if @postcode.country == "N92000002" %></dd>
+        <dd class="easting"><%= @postcode.easting.to_i %> <%= "<em class='ing'>(Irish National Grid)</em>".html_safe if @postcode.ni? %></dd>
         <dt>Northing</dt>
-        <dd class="northing"><%= @postcode.northing.to_i %> <%= "<em class='ing'>(Irish National Grid)</em>".html_safe if @postcode.country == "N92000002" %></dd>
+        <dd class="northing"><%= @postcode.northing.to_i %> <%= "<em class='ing'>(Irish National Grid)</em>".html_safe if @postcode.ni? %></dd>
         <dt>Geohash URI</dt>
         <dd class="geohash_uri"><%= link_to @postcode.geohash, @postcode.geohash %></dd>
         <dt>Openly Local URL</dt>
         <dd class="openly_local_url"><%= link_to "http://openlylocal.com/areas/postcodes/#{@postcode.postcode.gsub(' ', '')}", "http://openlylocal.com/areas/postcodes/#{@postcode.postcode.gsub(' ', '')}" %></dd>          
         <% @postcode.admin_areas.each do |title, area| %>
             <dt><%= title.to_s.titleize %></dt> 
-            <% if @postcode.country == "N92000002" %>
+            <% if @postcode.ni? %>
               <dd class="<%= title.to_s.gsub(" ", "_") %>"><%= area[:name] %></dd>
             <% else %>
               <dd class="<%= title.to_s.gsub(" ", "_") %>"><%= link_to area[:name], area[:os_uri] %></dd>

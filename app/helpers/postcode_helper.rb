@@ -20,7 +20,7 @@ module PostcodeHelper
     graph << [p, prefixes[:rdfs].label, postcode.postcode]
     graph << [p, RDF.type, RDF::URI.new("http://data.ordnancesurvey.co.uk/ontology/postcode/PostcodeUnit")]
     
-    unless postcode.country == "N92000002"
+    unless postcode.ni?
       graph << [p, prefixes[:owl].sameAs, RDF::URI.new("http://data.ordnancesurvey.co.uk/id/postcodeunit/#{postcode.postcode.gsub(" ", "")}")]
     end
     
@@ -29,7 +29,7 @@ module PostcodeHelper
     graph << [p, prefixes[:spatialrelations].easting, postcode.easting.to_int ]
     graph << [p, prefixes[:spatialrelations].northing, postcode.northing.to_int ]
     
-    unless postcode.country == "N92000002"
+    unless postcode.ni?
       postcode.admin_areas.each do |title, area|
         unless area[:gss] == "999999999"
           graph << [p, prefixes[:spatialrelations]['t_spatiallyInside'], RDF::URI.new(area[:ons_uri]) ]
@@ -52,7 +52,7 @@ module PostcodeHelper
       graph << [p, prefixes[:rdfs].label, postcode.postcode]
       graph << [p, RDF.type, RDF::URI.new("http://data.ordnancesurvey.co.uk/ontology/postcode/PostcodeUnit")]
       
-      unless postcode.country == "N92000002"
+      unless postcode.ni?
         graph << [p, prefixes[:owl].sameAs, RDF::URI.new("http://data.ordnancesurvey.co.uk/id/postcodeunit/#{postcode.postcode.gsub(" ", "")}")]
       end
       
