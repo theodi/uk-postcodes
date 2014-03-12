@@ -4,11 +4,6 @@ rvm:
 env:
   global:
     - secure: "Y/P5qutDXjh3OnHrR/pwu5kS3iPqnkSFg4X6zLeVb4Bmf6A4RPYoL8JbxdVOFoFNUsepzJuhVFEsqXHdKZzirJBsxAkrO9UeuT5+ytvDb/ggfBpyhOWpZyNJ/5W8I3JNzYERk9TD3CtP2dhjJlmau/UUD9FvjFeF0zSti5YiaCs="
-before_install:
-  - echo -n $id_rsa_{00..30} | tr -d ' ' >> ~/.ssh/id_rsa_base64
-  - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
-  - chmod 600 ~/.ssh/id_rsa
-  - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
 before_script:
   - psql -c 'CREATE USER root with SUPERUSER;' -U postgres
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
