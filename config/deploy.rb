@@ -4,7 +4,12 @@ set :branch, 'master'
 
 set :deploy_to, '/var/www/uk-postcodes'
 set :scm, :git
-set :ssh_options, keys: ["config/deploy_id_rsa"] if File.exist?("config/deploy_id_rsa")
+
+if File.exist?("config/deploy_id_rsa")
+  set :ssh_options, {
+      keys: %w("config/deploy_id_rsa")
+    }
+end
 
 #set :linked_files, %w{config/database.yml}
 
