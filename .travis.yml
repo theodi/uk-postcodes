@@ -3,7 +3,7 @@ rvm:
 - 2.0.0
 env:
   global:
-    - secure: "Y/P5qutDXjh3OnHrR/pwu5kS3iPqnkSFg4X6zLeVb4Bmf6A4RPYoL8JbxdVOFoFNUsepzJuhVFEsqXHdKZzirJBsxAkrO9UeuT5+ytvDb/ggfBpyhOWpZyNJ/5W8I3JNzYERk9TD3CtP2dhjJlmau/UUD9FvjFeF0zSti5YiaCs="
+    - secure: "fBUeJ4t2pLBF1MVDBFsfyubFEJE0PBMfma+7f8vjBZ3gRqmpfIgOzFMDCp1IzRwnnQLMl82Lf/TE78UTiuOpgbCM3i3UHG4v8objN4ASk25SM+j2WoNHGKaqWml+XjXcxQKjYcvA7xIWaXNwKG9KbevT1A2HMSoXT9fRWrc3HRg="
 before_script:
   - psql -c 'CREATE USER root with SUPERUSER;' -U postgres
   - psql -c 'CREATE DATABASE uk_postcodes_test;' -U postgres
