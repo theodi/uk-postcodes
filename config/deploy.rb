@@ -1,5 +1,5 @@
 set :application, 'uk-postcodes'
-set :repo_url, 'git@github.com:theodi/uk-postcodes.git'
+set :repo_url, 'https://github.com/theodi/uk-postcodes.git'
 set :branch, 'master'
 
 set :deploy_to, '/var/www/uk-postcodes'
