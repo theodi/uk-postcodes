@@ -12,7 +12,7 @@ module PostcodeHelper
     }
   end
   
-  def show_rdf(postcode)
+  def show_rdf(postcode, format)
     graph = RDF::Graph.new
     
     p = RDF::URI.new("http://uk-postcodes.com/postcode/#{postcode.postcode.gsub(" ", "")}")
@@ -40,10 +40,10 @@ module PostcodeHelper
       end
     end
     
-    render :text => graph.dump(:rdfxml, :prefixes => prefixes)  
+    render :text => graph.dump(format, :prefixes => prefixes)  
   end
   
-  def nearest_rdf(postcodes)
+  def nearest_rdf(postcodes, format)
     graph = RDF::Graph.new
     
     postcodes.each do |postcode|
@@ -62,7 +62,7 @@ module PostcodeHelper
       graph << [p, prefixes[:spatialrelations].northing, postcode.northing.to_int ]
     end
     
-    render :text => graph.dump(:rdfxml, :prefixes => prefixes)
+    render :text => graph.dump(format, :prefixes => prefixes)
   end
   
 end

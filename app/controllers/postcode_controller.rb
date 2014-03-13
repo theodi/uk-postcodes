@@ -3,7 +3,7 @@ class PostcodeController < ApplicationController
   
   caches_page :index, :show
   
-  before_filter(:only => [:show, :nearest]) { alternate_formats [:json, :xml, :rdf, :csv] }
+  before_filter(:only => [:show, :nearest]) { alternate_formats [:json, :xml, :rdf, :csv, :n3] }
 
   def index
     
@@ -37,7 +37,8 @@ class PostcodeController < ApplicationController
         format.html
         format.json
         format.xml
-        format.rdf { show_rdf(@postcode) }
+        format.rdf { show_rdf(@postcode, :rdfxml) }
+        format.n3 { show_rdf(@postcode, :ntriples) }
         format.csv { render :text => @postcode.to_csv }
       end
     end
@@ -72,7 +73,8 @@ class PostcodeController < ApplicationController
       format.html
       format.json
       format.xml
-      format.rdf { nearest_rdf(@postcodes) }
+      format.rdf { nearest_rdf(@postcodes, :rdfxml) }
+      format.n3 { nearest_rdf(@postcode, :ntriples) }
       format.csv do
         csv = []
         @postcodes.each do |postcode|
