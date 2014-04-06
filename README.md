@@ -14,7 +14,7 @@ This is the next generation version of [http://www.uk-postcodes.com](http://www.
 
 ## Running a local version
 
-I've included all the necessary data in this repo (which I will keep updated). To get this up and running locally (I'm assuming you have a local instance of MongoDB running, and Ruby installed).
+I've included all the necessary data in this repo (which I will keep updated). To get this up and running locally (I'm assuming you have a local instance of Postgres / PostGIS running, and Ruby installed).
 
 ### Clone the repo
 
