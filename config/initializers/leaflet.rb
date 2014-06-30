@@ -1,3 +1,5 @@
-Leaflet.tile_layer = "http://{s}.tile.cloudmade.com/3a36067fc4f2404eb235c892bb344b06/997/256/{z}/{x}/{y}.png"
-Leaflet.attribution = "Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade"
+Leaflet.tile_layer = "http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png"
+Leaflet.attribution = "Tiles Courtesy of <a href=\"http://www.mapquest.com/\">MapQuest</a> &mdash; " +
+"Map data &copy; <a href=\"http://openstreetmap.org\">OpenStreetMap</a> contributors, " +
+"<a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>"
 Leaflet.max_zoom = 18
