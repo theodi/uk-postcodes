@@ -14,8 +14,6 @@ gem 'capistrano', :require => false
 gem 'capistrano-rails', :require => false
 gem 'rvm1-capistrano3', :require => false
 gem 'dotenv-rails'
-
-gem 'sqlite3'
 gem 'osgb'
 gem 'uk_postcode'
 gem 'dbf'
@@ -62,7 +60,7 @@ group :test do
   gem 'coveralls'
 end
 
-gem 'jquery-rails'
+gem 'jquery-rails', '~> 2.3.0'
 gem 'newrelic_rpm'
 
 

@@ -30,12 +30,12 @@ production:
   postgis_extension: true
   schema_search_path: public,postgis
   pool: 5
-  host: localhost
-  database: OVERWRITTEN_ON_DEPLOY     # substitute your dev database name
-  username: OVERWRITTEN_ON_DEPLOY     # substitute the username your app will use to connect
-  password: OVERWRITTEN_ON_DEPLOY     # substitute the user's password
-  su_username: OVERWRITTEN_ON_DEPLOY  # substitute a superuser for the database
-  su_password: OVERWRITTEN_ON_DEPLOY  # substitute the superuser's password
+  host: <%= ENV['DATABASE_HOST'] %>
+  database: uk_postcodes_production   # substitute your dev database name
+  username: uk_postcodes     # substitute the username your app will use to connect
+  password: <%= ENV['DATABASE_PASSWORD'] %>     # substitute the user's password
+  su_username: <%= ENV['SU_USERNAME'] %>  # substitute a superuser for the database
+  su_password: <%= ENV['SU_PASSWORD'] %>  # substitute the superuser's password
 
 cucumber:
   <<: *test
